@@ -1,0 +1,133 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+<link href="{% static 'style/fg.css' %}" rel="stylesheet">
+{% endblock %}
+{% block content %}
+        <section class="sec-fg">
+            <a class="back" href="{% url 'index' %}">
+                <div class="arrow">
+                    <svg viewBox="0 0 512.00 512.00" width="32" version="1.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#ffffff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <style type="text/css"> .st0{fill:#ffffff;} </style> <g id="Layer_1"></g> <g id="Layer_2"> <g> <path class="st0" d="M217,129.88c-6.25-6.25-16.38-6.25-22.63,0L79.61,244.64c-0.39,0.39-0.76,0.8-1.11,1.23 c-0.11,0.13-0.2,0.27-0.31,0.41c-0.21,0.28-0.42,0.55-0.62,0.84c-0.14,0.21-0.26,0.43-0.39,0.64c-0.14,0.23-0.28,0.46-0.41,0.7 c-0.13,0.24-0.24,0.48-0.35,0.73c-0.11,0.23-0.22,0.45-0.32,0.68c-0.11,0.26-0.19,0.52-0.28,0.78c-0.08,0.23-0.17,0.46-0.24,0.69 c-0.09,0.29-0.15,0.58-0.22,0.86c-0.05,0.22-0.11,0.43-0.16,0.65c-0.08,0.38-0.13,0.76-0.17,1.14c-0.02,0.14-0.04,0.27-0.06,0.41 c-0.11,1.07-0.11,2.15,0,3.22c0.01,0.06,0.02,0.12,0.03,0.18c0.05,0.46,0.12,0.92,0.21,1.37c0.03,0.13,0.07,0.26,0.1,0.39 c0.09,0.38,0.18,0.76,0.29,1.13c0.04,0.13,0.09,0.26,0.14,0.4c0.12,0.36,0.25,0.73,0.4,1.09c0.05,0.11,0.1,0.21,0.15,0.32 c0.17,0.37,0.34,0.74,0.53,1.1c0.04,0.07,0.09,0.14,0.13,0.21c0.21,0.38,0.44,0.76,0.68,1.13c0.02,0.03,0.04,0.06,0.06,0.09 c0.55,0.81,1.18,1.58,1.89,2.29l114.81,114.81c3.12,3.12,7.22,4.69,11.31,4.69s8.19-1.56,11.31-4.69c6.25-6.25,6.25-16.38,0-22.63 l-87.5-87.5h291.62c8.84,0,16-7.16,16-16s-7.16-16-16-16H129.51L217,152.5C223.25,146.26,223.25,136.13,217,129.88z"></path> </g> </g> </g></svg>
+                </div>
+            </a>
+            <div class="block_text">
+                <div class="img">
+                    <img id="img" src="{% static 'img/mishka.gif' %}">
+                </div>
+                <div class="right_text">
+                    <div class="title">
+                        <h4>Привет,<br>
+                            Меня зовут медвежонок Френди.</h4>
+                    </div>
+                </div>
+            </div>
+                <div class="block_info" id="det_text">
+                <p>И я хочу рассказать тебе о своём игровом приложении.<br>
+                    В нем много закодированных загадок и секретов.<br><br>
+                    Мы научимся общаться создавая сообщения, которые будут нашей тайной.<br>
+                    Я расскажу тебе о разных интересных местах и странах, и мы вместе отправимся в большое путешествие.<br><br>
+                    Еще я научу тебя разгадывать шифры, загадки и искать сокровища, спрятанные по всему миру.<br>
+                    Играя, мы будем собирать золотые монетки царя Скорпионов.<br>
+                    Он добрый и очень щедрый.<br><br>
+                    А главное, ты будешь много мечтать и, за это, я буду дарить тебе подарки.<br>
+                    У нас будет много друзей и нам всегда будет весело.</p>
+            </div>
+                <div class="block_info" id="vzr_text" style="display: none;">
+                <p>Поздравляю тебя, ты стал счастливым обладателем уникальной программы под название «Friends Game».<br><br>
+И сейчас я расскажу тебе обо всех её возможностях.<br><br>
+В облегченной версии программного приложения тебе доступны следующие возможности:<br><br>
+Ты можешь закодировать свое первое сообщение веселыми <img width="50px" src="{% static 'img/1634204807_217583.png' %}">и отправить его по электронной почте, через WhatsApp или Telegram.<br><br>
+При этом приложение также легко раскодирует любое сообщение, которое ты получишь от своих друзей.<br><br>
+Ты всегда будешь в курсе новостей и акций, сможешь легко задать вопросы в службу поддержки, где мы с радостью с тобой поболтаем.<br><br>
+Два раза в месяц мы проводим игры и дарим всем победителям крутые подарки.
+                    <div class="block_button button_invis">
+                    <a onclick="text_invis()">УЗНАТЬ БОЛЬШЕ</a>
+                </div>
+                    <div class="text_invis"><p>
+                        <img src="{% static "img/check-mark.png" %}"> Когда тебе захочется расширить возможности своего секретного общения, то просто подари мне монетку в 25€, и я, в знак благодарности, раскрою тебе несколько новых способов тайного общении и сохранения личной информации. Помни, чем больше ты будешь общаться, тем быстрее я начну исполнять все твои мечты! Да - да, это правда! Уникальность приложения, которым ты обладаешь, не имеет границ. Оно не только защищает твои мысли и желания, но и дарит новые эмоции. Поверь, с ним нам точно не будет скучно.<br><br>
+                        <img src="{% static "img/check-mark.png" %}"> Я думаю, что ты знаешь, что сегодня в мире цифровых технологий самым ценным для людей является информация. Как говорится, кто владеет информацией, тот правит миром! Поэтому злоумышленники часто пытаются заполучить её любым удобным способом. Я же помогу тебе сохранить твою жизнь в тайне, надежно защитив её.<br><br>
+                        </p>
+                        <div class="text_border"><p>Приложение доступно и в профессиональной версии программы с «плавающим» ключом
+                            шифрования на основе самообучающегося искусственного интеллекта.
+                            С ним твой бизнес, пароли и любые документы будут надежно защищены от взлома или кражи.</p></div>
+                    </div>
+                    <p>Мы научимся мечтать и строить планы на будущее. Если ты захочешь, я всегда буду рядом и с радостью
+                        поддержу тебя в трудную минуту. В знак благодарности за общение со мной я, как сказочный
+                        джин, буду постоянно исполнять все твои мечты. Мечтай, ведь это так прекрасно!<br><br>
+                        Самой интересной особенностью твоего приложения, будет возможность стать зрителем в «Интерактивной игре Золотой Скорпион». Это погони и приключения, тайны и головоломки. Вместе с игроками ты будешь разгадывать шифры, и искать сокровища, спрятанные по всему миру.<br><br>
+                        Игра имеет огромный призовой фонд и неограниченные возможности для самореализации и развития.
+                    </p>
+                <h4>Стань частью команды, покажи всем, чего ты достоин!</h4>
+            </div>
+            <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active" data-bs-interval="5000">
+                    <img src="{% static 'img/slide_1.jpg' %}">
+                  </div>
+                  <div class="carousel-item" data-bs-interval="5000">
+                    <img src="{% static 'img/slide_2.jpg' %}">
+                  </div>
+                  <div class="carousel-item" data-bs-interval="5000">
+                    <img src="{% static 'img/slide_3.jpg' %}">
+                  </div>
+                  <div class="carousel-item" data-bs-interval="5000">
+                    <img src="{% static 'img/slide_4.jpg' %}">
+                  </div>
+                  <div class="carousel-item" data-bs-interval="5000">
+                    <img src="{% static 'img/slide_5.jpg' %}">
+                  </div>
+                  <div class="carousel-item" data-bs-interval="5000">
+                    <img src="{% static 'img/slide_6.jpg' %}">
+                  </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Предыдущий</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Следующий</span>
+  </button>
+</div>
+
+            <div class="block_button">
+                <a href="{% url 'register' %}">Давай дружить</a>
+            </div>
+        </section>
+{% endblock %}
+{% block modal %}
+<div class="age_modal" {% if age > 0 %}style="display:none!important;" {% endif %}>
+    <div class="title">
+        <h1>Укажите ваш возраст:</h1>
+    </div>
+    <div class="age">
+        <form name="myform" oninput="range1value.value = slider.valueAsNumber">
+            <output name="range1value" for="slider" >1</output>
+            <input type="range" id="slider" name="slider" min="0" max="80" value='0' list='markers' autocomplete='on'>
+            <div class="block_button" style="margin-top: 20px">
+                <a onclick="age();">Подтвердить</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+{% block js %}
+<script>
+
+function age() {
+    var age = $('#slider').val()
+    if (age > 15) {
+        location.reload();
+    } else {
+        $("#img").attr("src","{% static 'img/mishka.gif' %}");
+        $('.age_modal').css('display', 'none');
+    }
+    document.cookie = "age="+age;
+}
+function text_invis() {
+    $('.button_invis').css('display', 'none');
+    $('.text_invis').css('display', 'block');
+}
+</script>
+{% endblock %}
+

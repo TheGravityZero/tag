@@ -1,0 +1,1089 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Главная</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'assets/css/swiper-bundle.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+    <script src="https://maps.api.2gis.ru/2.0/loader.js?pkg=full"></script>
+</head>
+<body>
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <h3 class="popup-title">Бесплатная <br> подписка за опрос</h3>
+            <div class="popup-page active" data-page="1">
+                <div class="popup-wrapper">
+                    <div class="popup-page__info height">
+                        <div class="popup-num__page">
+                            <p>1 / 5</p>
+                            <svg class="mobile" onclick="close_popup();" width="20px" height="20px" viewBox="-0.5 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M3 21.32L21 3.32001" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M3 3.32001L21 21.32" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <div class="popup-page__title">
+                            Выбери любимые <br>#теги локаций
+                        </div>
+                        <div class="locations" id="popup_tags">
+                            <input type="checkbox" name="btn_1" id="btn_1" class="locations-tag check_tags">
+                            <label for="btn_1" class="locations-tag">#веранды</label>
+                            <input type="checkbox" name="btn_2" id="btn_2" class="locations-tag check_tags">
+                            <label for="btn_2" class="locations-tag">#кафе</label>
+                            <input type="checkbox" name="btn_3" id="btn_3" class="locations-tag check_tags">
+                            <label for="btn_3" class="locations-tag">#рестораны</label>
+                            <input type="checkbox" name="btn_4" id="btn_4" class="locations-tag check_tags">
+                            <label for="btn_4" class="locations-tag">#однотонные_стены</label>
+                            <input type="checkbox" name="btn_5" id="btn_5" class="locations-tag check_tags">
+                            <label for="btn_5" class="locations-tag">#парковки</label>
+                            <input type="checkbox" name="btn_6" id="btn_6" class="locations-tag check_tags">
+                            <label for="btn_6" class="locations-tag">#жк</label>
+                            <input type="checkbox" name="btn_7" id="btn_7" class="locations-tag check_tags">
+                            <label for="btn_7" class="locations-tag">#классическая_архитектура</label>
+                            <input type="checkbox" name="btn_8" id="btn_8" class="locations-tag check_tags">
+                            <label for="btn_8" class="locations-tag">#необычные_места</label>
+                            <input type="checkbox" name="btn_9" id="btn_9" class="locations-tag check_tags">
+                            <label for="btn_9" class="locations-tag">#фотостудии</label>
+                            <input type="checkbox" name="btn_10" id="btn_10" class="locations-tag check_tags">
+                            <label for="btn_10" class="locations-tag">#парки</label>
+                            <input type="checkbox" name="btn_11" id="btn_11" class="locations-tag check_tags">
+                            <label for="btn_11" class="locations-tag">#спортплощадки</label>
+                            <input type="checkbox" name="btn_12" id="btn_12" class="locations-tag check_tags">
+                            <label for="btn_12" class="locations-tag">#артпространства</label>
+                            <input type="checkbox" name="btn_13" id="btn_13" class="locations-tag check_tags">
+                            <label for="btn_13" class="locations-tag">#библиотеки</label>
+                            <input type="checkbox" name="btn_14" id="btn_14" class="locations-tag check_tags">
+                            <label for="btn_14" class="locations-tag">#церкви</label>
+                            <input type="checkbox" name="btn_15" id="btn_15" class="locations-tag check_tags">
+                            <label for="btn_15" class="locations-tag">#коворкинги</label>
+                            <input type="checkbox" name="btn_16" id="btn_16" class="locations-tag check_tags">
+                            <label for="btn_16" class="locations-tag">#крыши</label>
+                        </div>
+                        <button class="nextButton mobile first-page">
+                            <p>Далее</p>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+                                <path d="M17.15 12.8973H4.75C4.53333 12.8973 4.35417 12.8264 4.2125 12.6848C4.07083 12.5431 4 12.3639 4 12.1473C4 11.9306 4.07083 11.7514 4.2125 11.6098C4.35417 11.4681 4.53333 11.3973 4.75 11.3973H17.15L11.475 5.72227C11.325 5.57227 11.25 5.39727 11.25 5.19727C11.25 4.99727 11.325 4.82227 11.475 4.67227C11.625 4.52227 11.8 4.44727 12 4.44727C12.2 4.44727 12.375 4.52227 12.525 4.67227L19.475 11.6223C19.5583 11.7056 19.6167 11.7889 19.65 11.8723C19.6833 11.9556 19.7 12.0473 19.7 12.1473C19.7 12.2473 19.6833 12.3389 19.65 12.4223C19.6167 12.5056 19.5583 12.5889 19.475 12.6723L12.525 19.6223C12.375 19.7723 12.2 19.8473 12 19.8473C11.8 19.8473 11.625 19.7723 11.475 19.6223C11.325 19.4723 11.25 19.2973 11.25 19.0973C11.25 18.8973 11.325 18.7223 11.475 18.5723L17.15 12.8973Z" fill="#383838"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="popup-page__inter">
+                        <div class="slider-container">
+                            <div class="slider-item">
+                              <div class="slider-content">
+                                <img src="{% static "assets/images/IMG_5627.JPG"%}" alt="Slide 1">
+                                <div class="review-info">
+                                    <p>
+                                        Даже не представляете, сколько времени я сэкономила благодаря этому сервису! Теперь я принимаю больше заказов и делаю их быстрее
+                                    </p>
+                                    <div class="slider-review__author">
+                                        <div class="author-avatar">
+                                            <img class="author-img" src="{% static "./assets/images/avatar testimonial.png"%}" alt="">
+                                        </div>
+                                        <div class="author-name">Екатерина</div>
+                                    </div>
+                                </div>
+                              </div>
+                              <div class="slider-controls">
+                                <button class="prev-slide">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+                                        <g opacity="0.5">
+                                        <path d="M6.85 12.8973H19.25C19.4667 12.8973 19.6458 12.8264 19.7875 12.6848C19.9292 12.5431 20 12.3639 20 12.1473C20 11.9306 19.9292 11.7514 19.7875 11.6098C19.6458 11.4681 19.4667 11.3973 19.25 11.3973H6.85L12.525 5.72227C12.675 5.57227 12.75 5.39727 12.75 5.19727C12.75 4.99727 12.675 4.82227 12.525 4.67227C12.375 4.52227 12.2 4.44727 12 4.44727C11.8 4.44727 11.625 4.52227 11.475 4.67227L4.525 11.6223C4.44167 11.7056 4.38333 11.7889 4.35 11.8723C4.31667 11.9556 4.3 12.0473 4.3 12.1473C4.3 12.2473 4.31667 12.3389 4.35 12.4223C4.38333 12.5056 4.44167 12.5889 4.525 12.6723L11.475 19.6223C11.625 19.7723 11.8 19.8473 12 19.8473C12.2 19.8473 12.375 19.7723 12.525 19.6223C12.675 19.4723 12.75 19.2973 12.75 19.0973C12.75 18.8973 12.675 18.7223 12.525 18.5723L6.85 12.8973Z" fill="white"/>
+                                        </g>
+                                    </svg>
+                                </button>
+                                <button class="next-slide">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+                                        <g opacity="0.5">
+                                        <path d="M17.15 12.8973H4.75C4.53333 12.8973 4.35417 12.8264 4.2125 12.6848C4.07083 12.5431 4 12.3639 4 12.1473C4 11.9306 4.07083 11.7514 4.2125 11.6098C4.35417 11.4681 4.53333 11.3973 4.75 11.3973H17.15L11.475 5.72227C11.325 5.57227 11.25 5.39727 11.25 5.19727C11.25 4.99727 11.325 4.82227 11.475 4.67227C11.625 4.52227 11.8 4.44727 12 4.44727C12.2 4.44727 12.375 4.52227 12.525 4.67227L19.475 11.6223C19.5583 11.7056 19.6167 11.7889 19.65 11.8723C19.6833 11.9556 19.7 12.0473 19.7 12.1473C19.7 12.2473 19.6833 12.3389 19.65 12.4223C19.6167 12.5056 19.5583 12.5889 19.475 12.6723L12.525 19.6223C12.375 19.7723 12.2 19.8473 12 19.8473C11.8 19.8473 11.625 19.7723 11.475 19.6223C11.325 19.4723 11.25 19.2973 11.25 19.0973C11.25 18.8973 11.325 18.7223 11.475 18.5723L17.15 12.8973Z" fill="white"/>
+                                        </g>
+                                    </svg>
+                                </button>
+                              </div>
+                            </div>
+                            <div class="slider-item">
+                                <div class="slider-content">
+                                  <img src="{% static "assets/images/IMG_5628.JPG"%}" alt="Slide 1">
+                                  <div class="review-info">
+                                      <p>
+                                          Даже не представляете, сколько времени я сэкономила благодаря этому сервису! Теперь я принимаю больше заказов и делаю их быстрее
+                                      </p>
+                                      <div class="slider-review__author">
+                                          <div class="author-avatar">
+                                              <img class="author-img" src="{% static "./assets/images/avatar testimonial.png"%}" alt="">
+                                          </div>
+                                          <div class="author-name">Семен</div>
+                                      </div>
+                                  </div>
+                                </div>
+                                <div class="slider-controls">
+                                  <button class="prev-slide">
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+                                          <g opacity="0.5">
+                                          <path d="M6.85 12.8973H19.25C19.4667 12.8973 19.6458 12.8264 19.7875 12.6848C19.9292 12.5431 20 12.3639 20 12.1473C20 11.9306 19.9292 11.7514 19.7875 11.6098C19.6458 11.4681 19.4667 11.3973 19.25 11.3973H6.85L12.525 5.72227C12.675 5.57227 12.75 5.39727 12.75 5.19727C12.75 4.99727 12.675 4.82227 12.525 4.67227C12.375 4.52227 12.2 4.44727 12 4.44727C11.8 4.44727 11.625 4.52227 11.475 4.67227L4.525 11.6223C4.44167 11.7056 4.38333 11.7889 4.35 11.8723C4.31667 11.9556 4.3 12.0473 4.3 12.1473C4.3 12.2473 4.31667 12.3389 4.35 12.4223C4.38333 12.5056 4.44167 12.5889 4.525 12.6723L11.475 19.6223C11.625 19.7723 11.8 19.8473 12 19.8473C12.2 19.8473 12.375 19.7723 12.525 19.6223C12.675 19.4723 12.75 19.2973 12.75 19.0973C12.75 18.8973 12.675 18.7223 12.525 18.5723L6.85 12.8973Z" fill="white"/>
+                                          </g>
+                                      </svg>
+                                  </button>
+                                  <button class="next-slide">
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+                                          <g opacity="0.5">
+                                          <path d="M17.15 12.8973H4.75C4.53333 12.8973 4.35417 12.8264 4.2125 12.6848C4.07083 12.5431 4 12.3639 4 12.1473C4 11.9306 4.07083 11.7514 4.2125 11.6098C4.35417 11.4681 4.53333 11.3973 4.75 11.3973H17.15L11.475 5.72227C11.325 5.57227 11.25 5.39727 11.25 5.19727C11.25 4.99727 11.325 4.82227 11.475 4.67227C11.625 4.52227 11.8 4.44727 12 4.44727C12.2 4.44727 12.375 4.52227 12.525 4.67227L19.475 11.6223C19.5583 11.7056 19.6167 11.7889 19.65 11.8723C19.6833 11.9556 19.7 12.0473 19.7 12.1473C19.7 12.2473 19.6833 12.3389 19.65 12.4223C19.6167 12.5056 19.5583 12.5889 19.475 12.6723L12.525 19.6223C12.375 19.7723 12.2 19.8473 12 19.8473C11.8 19.8473 11.625 19.7723 11.475 19.6223C11.325 19.4723 11.25 19.2973 11.25 19.0973C11.25 18.8973 11.325 18.7223 11.475 18.5723L17.15 12.8973Z" fill="white"/>
+                                          </g>
+                                      </svg>
+                                  </button>
+                                </div>
+                              </div>
+                              <div class="slider-item">
+                                <div class="slider-content">
+                                  <img src="{% static "assets/images/IMG_5629.JPG"%}" alt="Slide 1">
+                                  <div class="review-info">
+                                      <p>
+                                          Даже не представляете, сколько времени я сэкономила благодаря этому сервису! Теперь я принимаю больше заказов и делаю их быстрее
+                                      </p>
+                                      <div class="slider-review__author">
+                                          <div class="author-avatar">
+                                              <img class="author-img" src="{% static "./assets/images/avatar testimonial.png"%}" alt="">
+                                          </div>
+                                          <div class="author-name">Алексей</div>
+                                      </div>
+                                  </div>
+                                </div>
+                                <div class="slider-controls">
+                                  <button class="prev-slide">
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+                                          <g opacity="0.5">
+                                          <path d="M6.85 12.8973H19.25C19.4667 12.8973 19.6458 12.8264 19.7875 12.6848C19.9292 12.5431 20 12.3639 20 12.1473C20 11.9306 19.9292 11.7514 19.7875 11.6098C19.6458 11.4681 19.4667 11.3973 19.25 11.3973H6.85L12.525 5.72227C12.675 5.57227 12.75 5.39727 12.75 5.19727C12.75 4.99727 12.675 4.82227 12.525 4.67227C12.375 4.52227 12.2 4.44727 12 4.44727C11.8 4.44727 11.625 4.52227 11.475 4.67227L4.525 11.6223C4.44167 11.7056 4.38333 11.7889 4.35 11.8723C4.31667 11.9556 4.3 12.0473 4.3 12.1473C4.3 12.2473 4.31667 12.3389 4.35 12.4223C4.38333 12.5056 4.44167 12.5889 4.525 12.6723L11.475 19.6223C11.625 19.7723 11.8 19.8473 12 19.8473C12.2 19.8473 12.375 19.7723 12.525 19.6223C12.675 19.4723 12.75 19.2973 12.75 19.0973C12.75 18.8973 12.675 18.7223 12.525 18.5723L6.85 12.8973Z" fill="white"/>
+                                          </g>
+                                      </svg>
+                                  </button>
+                                  <button class="next-slide">
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+                                          <g opacity="0.5">
+                                          <path d="M17.15 12.8973H4.75C4.53333 12.8973 4.35417 12.8264 4.2125 12.6848C4.07083 12.5431 4 12.3639 4 12.1473C4 11.9306 4.07083 11.7514 4.2125 11.6098C4.35417 11.4681 4.53333 11.3973 4.75 11.3973H17.15L11.475 5.72227C11.325 5.57227 11.25 5.39727 11.25 5.19727C11.25 4.99727 11.325 4.82227 11.475 4.67227C11.625 4.52227 11.8 4.44727 12 4.44727C12.2 4.44727 12.375 4.52227 12.525 4.67227L19.475 11.6223C19.5583 11.7056 19.6167 11.7889 19.65 11.8723C19.6833 11.9556 19.7 12.0473 19.7 12.1473C19.7 12.2473 19.6833 12.3389 19.65 12.4223C19.6167 12.5056 19.5583 12.5889 19.475 12.6723L12.525 19.6223C12.375 19.7723 12.2 19.8473 12 19.8473C11.8 19.8473 11.625 19.7723 11.475 19.6223C11.325 19.4723 11.25 19.2973 11.25 19.0973C11.25 18.8973 11.325 18.7223 11.475 18.5723L17.15 12.8973Z" fill="white"/>
+                                          </g>
+                                      </svg>
+                                  </button>
+                                </div>
+                              </div>
+                            <div class="slider-item">
+                                <div class="slider-content">
+                                  <img src="{% static "assets/images/IMG_5631.JPG"%}" alt="Slide 1">
+                                  <div class="review-info">
+                                      <p>
+                                          Даже не представляете, сколько времени я сэкономила благодаря этому сервису! Теперь я принимаю больше заказов и делаю их быстрее
+                                      </p>
+                                      <div class="slider-review__author">
+                                          <div class="author-avatar">
+                                              <img class="author-img" src="{% static "./assets/images/avatar testimonial.png"%}" alt="">
+                                          </div>
+                                          <div class="author-name">Алексей</div>
+                                      </div>
+                                  </div>
+                                </div>
+                                <div class="slider-controls">
+                                  <button class="prev-slide">
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+                                          <g opacity="0.5">
+                                          <path d="M6.85 12.8973H19.25C19.4667 12.8973 19.6458 12.8264 19.7875 12.6848C19.9292 12.5431 20 12.3639 20 12.1473C20 11.9306 19.9292 11.7514 19.7875 11.6098C19.6458 11.4681 19.4667 11.3973 19.25 11.3973H6.85L12.525 5.72227C12.675 5.57227 12.75 5.39727 12.75 5.19727C12.75 4.99727 12.675 4.82227 12.525 4.67227C12.375 4.52227 12.2 4.44727 12 4.44727C11.8 4.44727 11.625 4.52227 11.475 4.67227L4.525 11.6223C4.44167 11.7056 4.38333 11.7889 4.35 11.8723C4.31667 11.9556 4.3 12.0473 4.3 12.1473C4.3 12.2473 4.31667 12.3389 4.35 12.4223C4.38333 12.5056 4.44167 12.5889 4.525 12.6723L11.475 19.6223C11.625 19.7723 11.8 19.8473 12 19.8473C12.2 19.8473 12.375 19.7723 12.525 19.6223C12.675 19.4723 12.75 19.2973 12.75 19.0973C12.75 18.8973 12.675 18.7223 12.525 18.5723L6.85 12.8973Z" fill="white"/>
+                                          </g>
+                                      </svg>
+                                  </button>
+                                  <button class="next-slide">
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+                                          <g opacity="0.5">
+                                          <path d="M17.15 12.8973H4.75C4.53333 12.8973 4.35417 12.8264 4.2125 12.6848C4.07083 12.5431 4 12.3639 4 12.1473C4 11.9306 4.07083 11.7514 4.2125 11.6098C4.35417 11.4681 4.53333 11.3973 4.75 11.3973H17.15L11.475 5.72227C11.325 5.57227 11.25 5.39727 11.25 5.19727C11.25 4.99727 11.325 4.82227 11.475 4.67227C11.625 4.52227 11.8 4.44727 12 4.44727C12.2 4.44727 12.375 4.52227 12.525 4.67227L19.475 11.6223C19.5583 11.7056 19.6167 11.7889 19.65 11.8723C19.6833 11.9556 19.7 12.0473 19.7 12.1473C19.7 12.2473 19.6833 12.3389 19.65 12.4223C19.6167 12.5056 19.5583 12.5889 19.475 12.6723L12.525 19.6223C12.375 19.7723 12.2 19.8473 12 19.8473C11.8 19.8473 11.625 19.7723 11.475 19.6223C11.325 19.4723 11.25 19.2973 11.25 19.0973C11.25 18.8973 11.325 18.7223 11.475 18.5723L17.15 12.8973Z" fill="white"/>
+                                          </g>
+                                      </svg>
+                                  </button>
+                                </div>
+                              </div>
+                            <div class="slider-item">
+                                <div class="slider-content">
+                                  <img src="{% static "assets/images/IMG_5632.JPG"%}" alt="Slide 1">
+                                  <div class="review-info">
+                                      <p>
+                                          Даже не представляете, сколько времени я сэкономила благодаря этому сервису! Теперь я принимаю больше заказов и делаю их быстрее
+                                      </p>
+                                      <div class="slider-review__author">
+                                          <div class="author-avatar">
+                                              <img class="author-img" src="{% static "./assets/images/avatar testimonial.png"%}" alt="">
+                                          </div>
+                                          <div class="author-name">Алексей</div>
+                                      </div>
+                                  </div>
+                                </div>
+                                <div class="slider-controls">
+                                  <button class="prev-slide">
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+                                          <g opacity="0.5">
+                                          <path d="M6.85 12.8973H19.25C19.4667 12.8973 19.6458 12.8264 19.7875 12.6848C19.9292 12.5431 20 12.3639 20 12.1473C20 11.9306 19.9292 11.7514 19.7875 11.6098C19.6458 11.4681 19.4667 11.3973 19.25 11.3973H6.85L12.525 5.72227C12.675 5.57227 12.75 5.39727 12.75 5.19727C12.75 4.99727 12.675 4.82227 12.525 4.67227C12.375 4.52227 12.2 4.44727 12 4.44727C11.8 4.44727 11.625 4.52227 11.475 4.67227L4.525 11.6223C4.44167 11.7056 4.38333 11.7889 4.35 11.8723C4.31667 11.9556 4.3 12.0473 4.3 12.1473C4.3 12.2473 4.31667 12.3389 4.35 12.4223C4.38333 12.5056 4.44167 12.5889 4.525 12.6723L11.475 19.6223C11.625 19.7723 11.8 19.8473 12 19.8473C12.2 19.8473 12.375 19.7723 12.525 19.6223C12.675 19.4723 12.75 19.2973 12.75 19.0973C12.75 18.8973 12.675 18.7223 12.525 18.5723L6.85 12.8973Z" fill="white"/>
+                                          </g>
+                                      </svg>
+                                  </button>
+                                  <button class="next-slide">
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+                                          <g opacity="0.5">
+                                          <path d="M17.15 12.8973H4.75C4.53333 12.8973 4.35417 12.8264 4.2125 12.6848C4.07083 12.5431 4 12.3639 4 12.1473C4 11.9306 4.07083 11.7514 4.2125 11.6098C4.35417 11.4681 4.53333 11.3973 4.75 11.3973H17.15L11.475 5.72227C11.325 5.57227 11.25 5.39727 11.25 5.19727C11.25 4.99727 11.325 4.82227 11.475 4.67227C11.625 4.52227 11.8 4.44727 12 4.44727C12.2 4.44727 12.375 4.52227 12.525 4.67227L19.475 11.6223C19.5583 11.7056 19.6167 11.7889 19.65 11.8723C19.6833 11.9556 19.7 12.0473 19.7 12.1473C19.7 12.2473 19.6833 12.3389 19.65 12.4223C19.6167 12.5056 19.5583 12.5889 19.475 12.6723L12.525 19.6223C12.375 19.7723 12.2 19.8473 12 19.8473C11.8 19.8473 11.625 19.7723 11.475 19.6223C11.325 19.4723 11.25 19.2973 11.25 19.0973C11.25 18.8973 11.325 18.7223 11.475 18.5723L17.15 12.8973Z" fill="white"/>
+                                          </g>
+                                      </svg>
+                                  </button>
+                                </div>
+                              </div>
+                          </div>
+                    </div>
+                </div>
+            </div>
+            <div class="popup-page" data-page="2">
+                <div class="popup-wrapper">
+                    <div class="popup-page__info">
+                        <div class="popup-num__page">
+                            <p>2 / 5</p>
+                            <svg class="mobile" onclick="close_popup();" width="20px" height="20px" viewBox="-0.5 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M3 21.32L21 3.32001" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M3 3.32001L21 21.32" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <div class="popup-page__title">
+                            Выбери удобный <br> город
+                        </div>
+                        <form class="popup-form">
+                            <select class="popup-select" name="" id="select_city" onchange="change_city();">
+                                <option value="Москва" selected>Москва</option>
+                                <option value="Екатеринбург">Екатеринбург</option>
+                            </select>
+                        </form>
+                        <button class="nextButton">
+                            <p>Далее</p>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+                                <path d="M17.15 12.8973H4.75C4.53333 12.8973 4.35417 12.8264 4.2125 12.6848C4.07083 12.5431 4 12.3639 4 12.1473C4 11.9306 4.07083 11.7514 4.2125 11.6098C4.35417 11.4681 4.53333 11.3973 4.75 11.3973H17.15L11.475 5.72227C11.325 5.57227 11.25 5.39727 11.25 5.19727C11.25 4.99727 11.325 4.82227 11.475 4.67227C11.625 4.52227 11.8 4.44727 12 4.44727C12.2 4.44727 12.375 4.52227 12.525 4.67227L19.475 11.6223C19.5583 11.7056 19.6167 11.7889 19.65 11.8723C19.6833 11.9556 19.7 12.0473 19.7 12.1473C19.7 12.2473 19.6833 12.3389 19.65 12.4223C19.6167 12.5056 19.5583 12.5889 19.475 12.6723L12.525 19.6223C12.375 19.7723 12.2 19.8473 12 19.8473C11.8 19.8473 11.625 19.7723 11.475 19.6223C11.325 19.4723 11.25 19.2973 11.25 19.0973C11.25 18.8973 11.325 18.7223 11.475 18.5723L17.15 12.8973Z" fill="#383838"/>
+                            </svg>
+                        </button>
+                    </div>
+                     <div class="popup-page__inter mobile">
+                        <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A5c9477d4ed0f83c4f7295ba2ca6a367d9ed73f796d9f6e0e0cca4e6475a94226&amp;source=constructor" width="550" height="550" frameborder="0" id="map_msk"></iframe>
+                         <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A482c86ebedb5c1ad9e569a741624a2bd30fe520e2d0210fab3a6aa9a1605df97&amp;source=constructor" width="550" height="550" frameborder="0" id="map_ekb" style="display: none"></iframe>
+                    </div>
+                    <button class="nextButton bottom-btn mobile ">
+                        <p>Далее</p>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+                            <path d="M17.15 12.8973H4.75C4.53333 12.8973 4.35417 12.8264 4.2125 12.6848C4.07083 12.5431 4 12.3639 4 12.1473C4 11.9306 4.07083 11.7514 4.2125 11.6098C4.35417 11.4681 4.53333 11.3973 4.75 11.3973H17.15L11.475 5.72227C11.325 5.57227 11.25 5.39727 11.25 5.19727C11.25 4.99727 11.325 4.82227 11.475 4.67227C11.625 4.52227 11.8 4.44727 12 4.44727C12.2 4.44727 12.375 4.52227 12.525 4.67227L19.475 11.6223C19.5583 11.7056 19.6167 11.7889 19.65 11.8723C19.6833 11.9556 19.7 12.0473 19.7 12.1473C19.7 12.2473 19.6833 12.3389 19.65 12.4223C19.6167 12.5056 19.5583 12.5889 19.475 12.6723L12.525 19.6223C12.375 19.7723 12.2 19.8473 12 19.8473C11.8 19.8473 11.625 19.7723 11.475 19.6223C11.325 19.4723 11.25 19.2973 11.25 19.0973C11.25 18.8973 11.325 18.7223 11.475 18.5723L17.15 12.8973Z" fill="#383838"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <div class="popup-page" data-page="3">
+                <div class="popup-wrapper">
+                    <div class="popup-page__info">
+                        <div class="popup-num__page">
+                            <p>3 / 5</p>
+                            <svg class="mobile" onclick="close_popup();" width="20px" height="20px" viewBox="-0.5 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M3 21.32L21 3.32001" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M3 3.32001L21 21.32" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <div class="popup-page__title" id="text_rayon">
+                            Выбери удобные <br> районы Москвы
+                        </div>
+                        <form class="popup-form">
+                            <div class="locations" id="rayon_check">
+                                <input type="checkbox" name="rayon_0" id="rayon_0" class="locations-tag check_rayon">
+                                <label for="rayon_0" class="locations-tag">Любой</label>
+                                <input type="checkbox" name="rayon_1" id="rayon_1" class="locations-tag check_rayon">
+                                <label for="rayon_1" class="locations-tag">Центральный</label>
+                                <input type="checkbox" name="rayon_2" id="rayon_2" class="locations-tag check_rayon">
+                                <label for="rayon_2" class="locations-tag">Северный</label>
+                                <input type="checkbox" name="rayon_3" id="rayon_3" class="locations-tag check_rayon">
+                                <label for="rayon_3" class="locations-tag">Северо-Восточный</label>
+                                <input type="checkbox" name="rayon_4" id="rayon_4" class="locations-tag check_rayon">
+                                <label for="rayon_4" class="locations-tag">Восточный</label>
+                                <input type="checkbox" name="rayon_5" id="rayon_5" class="locations-tag check_rayon">
+                                <label for="rayon_5" class="locations-tag">Юго-Восточный</label>
+                                <input type="checkbox" name="rayon_6" id="rayon_6" class="locations-tag check_rayon">
+                                <label for="rayon_6" class="locations-tag">Южный</label>
+                                <input type="checkbox" name="rayon_7" id="rayon_7" class="locations-tag check_rayon">
+                                <label for="rayon_7" class="locations-tag">Юго-Западный</label>
+                                <input type="checkbox" name="rayon_8" id="rayon_8" class="locations-tag check_rayon">
+                                <label for="rayon_8" class="locations-tag">Западный</label>
+                                <input type="checkbox" name="rayon_9" id="rayon_9" class="locations-tag check_rayon">
+                                <label for="rayon_9" class="locations-tag">Северо-Западный</label>
+                                <input type="checkbox" name="rayon_10" id="rayon_10" class="locations-tag check_rayon">
+                                <label for="rayon_10" class="locations-tag">Зеленоградский</label>
+                                <input type="checkbox" name="rayon_11" id="rayon_11" class="locations-tag check_rayon">
+                                <label for="rayon_11" class="locations-tag">Троицкий</label>
+                                <input type="checkbox" name="rayon_12" id="rayon_12" class="locations-tag check_rayon">
+                                <label for="rayon_12" class="locations-tag">Новомосковский</label>
+                            </div>
+                        </form>
+                        <button class="nextButton">
+                            <p>Далее</p>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+                                <path d="M17.15 12.8973H4.75C4.53333 12.8973 4.35417 12.8264 4.2125 12.6848C4.07083 12.5431 4 12.3639 4 12.1473C4 11.9306 4.07083 11.7514 4.2125 11.6098C4.35417 11.4681 4.53333 11.3973 4.75 11.3973H17.15L11.475 5.72227C11.325 5.57227 11.25 5.39727 11.25 5.19727C11.25 4.99727 11.325 4.82227 11.475 4.67227C11.625 4.52227 11.8 4.44727 12 4.44727C12.2 4.44727 12.375 4.52227 12.525 4.67227L19.475 11.6223C19.5583 11.7056 19.6167 11.7889 19.65 11.8723C19.6833 11.9556 19.7 12.0473 19.7 12.1473C19.7 12.2473 19.6833 12.3389 19.65 12.4223C19.6167 12.5056 19.5583 12.5889 19.475 12.6723L12.525 19.6223C12.375 19.7723 12.2 19.8473 12 19.8473C11.8 19.8473 11.625 19.7723 11.475 19.6223C11.325 19.4723 11.25 19.2973 11.25 19.0973C11.25 18.8973 11.325 18.7223 11.475 18.5723L17.15 12.8973Z" fill="#383838"/>
+                            </svg>
+                        </button>
+                    </div>
+                     <div class="popup-page__inter mobile">
+                        <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A5c9477d4ed0f83c4f7295ba2ca6a367d9ed73f796d9f6e0e0cca4e6475a94226&amp;source=constructor" width="550" height="550" frameborder="0" id="map_msk_2"></iframe>
+                         <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A482c86ebedb5c1ad9e569a741624a2bd30fe520e2d0210fab3a6aa9a1605df97&amp;source=constructor" width="550" height="550" frameborder="0" id="map_ekb_2" style="display: none"></iframe>
+                    </div>
+                    <button class="nextButton bottom-btn mobile ">
+                        <p>Далее</p>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+                            <path d="M17.15 12.8973H4.75C4.53333 12.8973 4.35417 12.8264 4.2125 12.6848C4.07083 12.5431 4 12.3639 4 12.1473C4 11.9306 4.07083 11.7514 4.2125 11.6098C4.35417 11.4681 4.53333 11.3973 4.75 11.3973H17.15L11.475 5.72227C11.325 5.57227 11.25 5.39727 11.25 5.19727C11.25 4.99727 11.325 4.82227 11.475 4.67227C11.625 4.52227 11.8 4.44727 12 4.44727C12.2 4.44727 12.375 4.52227 12.525 4.67227L19.475 11.6223C19.5583 11.7056 19.6167 11.7889 19.65 11.8723C19.6833 11.9556 19.7 12.0473 19.7 12.1473C19.7 12.2473 19.6833 12.3389 19.65 12.4223C19.6167 12.5056 19.5583 12.5889 19.475 12.6723L12.525 19.6223C12.375 19.7723 12.2 19.8473 12 19.8473C11.8 19.8473 11.625 19.7723 11.475 19.6223C11.325 19.4723 11.25 19.2973 11.25 19.0973C11.25 18.8973 11.325 18.7223 11.475 18.5723L17.15 12.8973Z" fill="#383838"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <div class="popup-page" data-page="4">
+                <div class="popup-wrapper">
+                    <div class="popup-page__info height">
+                        <div class="popup-num__page">
+                            <p>4 / 5</p>
+                            <svg class="mobile" onclick="close_popup();" width="20px" height="20px" viewBox="-0.5 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M3 21.32L21 3.32001" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M3 3.32001L21 21.32" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <div class="popup-page__title">
+                            Выбери любимый <br> формат при <br> создании контента
+                        </div>
+                        <div class="format-menu">
+                            <div class="format-menu-item">
+                                <img class="format-menu-item__img" src="{% static "./assets/images/f9-16.png"%}" alt="">
+                                <p class="format-title">9:16</p>
+                                <input type="radio"  name="format-radio" checked>
+                            </div>
+                            <div class="format-menu-item">
+                                <img class="format-menu-item__img" src="{% static "./assets/images/f16-9.png"%}" alt="">
+                                <p class="format-title">16:9</p>
+                                <input type="radio" name="format-radio">
+                            </div>
+                            <div class="format-menu-item">
+                                <img class="format-menu-item__img" src="{% static "./assets/images/f1-1.png"%}" alt="">
+                                <p class="format-title">1:1</p>
+                                <input type="radio"  name="format-radio">
+                            </div>
+                            <div class="format-menu-item">
+                                <img class="format-menu-item__img" src="{% static "./assets/images/frazn.png"%}" alt="">
+                                <p class="format-title">Разный</p>
+                                <input type="radio"  name="format-radio">
+                            </div>
+                        </div>
+                        <button class="nextButton mobile first-page">
+                            <p>Получить доступ</p>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+                                <path d="M17.15 12.8973H4.75C4.53333 12.8973 4.35417 12.8264 4.2125 12.6848C4.07083 12.5431 4 12.3639 4 12.1473C4 11.9306 4.07083 11.7514 4.2125 11.6098C4.35417 11.4681 4.53333 11.3973 4.75 11.3973H17.15L11.475 5.72227C11.325 5.57227 11.25 5.39727 11.25 5.19727C11.25 4.99727 11.325 4.82227 11.475 4.67227C11.625 4.52227 11.8 4.44727 12 4.44727C12.2 4.44727 12.375 4.52227 12.525 4.67227L19.475 11.6223C19.5583 11.7056 19.6167 11.7889 19.65 11.8723C19.6833 11.9556 19.7 12.0473 19.7 12.1473C19.7 12.2473 19.6833 12.3389 19.65 12.4223C19.6167 12.5056 19.5583 12.5889 19.475 12.6723L12.525 19.6223C12.375 19.7723 12.2 19.8473 12 19.8473C11.8 19.8473 11.625 19.7723 11.475 19.6223C11.325 19.4723 11.25 19.2973 11.25 19.0973C11.25 18.8973 11.325 18.7223 11.475 18.5723L17.15 12.8973Z" fill="#383838"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="popup-page__inter">
+                        <div class="slider-container">
+                            <div class="slider-item">
+                              <div class="slider-content">
+                                <img src="{% static "assets/images/IMG_5627.JPG"%}" alt="Slide 1">
+                                <div class="review-info">
+                                    <p>
+                                        Даже не представляете, сколько времени я сэкономила благодаря этому сервису! Теперь я принимаю больше заказов и делаю их быстрее
+                                    </p>
+                                    <div class="slider-review__author">
+                                        <div class="author-avatar">
+                                            <img class="author-img" src="{% static "./assets/images/avatar testimonial.png"%}" alt="">
+                                        </div>
+                                        <div class="author-name">Екатерина</div>
+                                    </div>
+                                </div>
+                              </div>
+                              <div class="slider-controls">
+                                <button class="prev-slide">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+                                        <g opacity="0.5">
+                                        <path d="M6.85 12.8973H19.25C19.4667 12.8973 19.6458 12.8264 19.7875 12.6848C19.9292 12.5431 20 12.3639 20 12.1473C20 11.9306 19.9292 11.7514 19.7875 11.6098C19.6458 11.4681 19.4667 11.3973 19.25 11.3973H6.85L12.525 5.72227C12.675 5.57227 12.75 5.39727 12.75 5.19727C12.75 4.99727 12.675 4.82227 12.525 4.67227C12.375 4.52227 12.2 4.44727 12 4.44727C11.8 4.44727 11.625 4.52227 11.475 4.67227L4.525 11.6223C4.44167 11.7056 4.38333 11.7889 4.35 11.8723C4.31667 11.9556 4.3 12.0473 4.3 12.1473C4.3 12.2473 4.31667 12.3389 4.35 12.4223C4.38333 12.5056 4.44167 12.5889 4.525 12.6723L11.475 19.6223C11.625 19.7723 11.8 19.8473 12 19.8473C12.2 19.8473 12.375 19.7723 12.525 19.6223C12.675 19.4723 12.75 19.2973 12.75 19.0973C12.75 18.8973 12.675 18.7223 12.525 18.5723L6.85 12.8973Z" fill="white"/>
+                                        </g>
+                                    </svg>
+                                </button>
+                                <button class="next-slide">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+                                        <g opacity="0.5">
+                                        <path d="M17.15 12.8973H4.75C4.53333 12.8973 4.35417 12.8264 4.2125 12.6848C4.07083 12.5431 4 12.3639 4 12.1473C4 11.9306 4.07083 11.7514 4.2125 11.6098C4.35417 11.4681 4.53333 11.3973 4.75 11.3973H17.15L11.475 5.72227C11.325 5.57227 11.25 5.39727 11.25 5.19727C11.25 4.99727 11.325 4.82227 11.475 4.67227C11.625 4.52227 11.8 4.44727 12 4.44727C12.2 4.44727 12.375 4.52227 12.525 4.67227L19.475 11.6223C19.5583 11.7056 19.6167 11.7889 19.65 11.8723C19.6833 11.9556 19.7 12.0473 19.7 12.1473C19.7 12.2473 19.6833 12.3389 19.65 12.4223C19.6167 12.5056 19.5583 12.5889 19.475 12.6723L12.525 19.6223C12.375 19.7723 12.2 19.8473 12 19.8473C11.8 19.8473 11.625 19.7723 11.475 19.6223C11.325 19.4723 11.25 19.2973 11.25 19.0973C11.25 18.8973 11.325 18.7223 11.475 18.5723L17.15 12.8973Z" fill="white"/>
+                                        </g>
+                                    </svg>
+                                </button>
+                              </div>
+                            </div>
+                            <div class="slider-item">
+                                <div class="slider-content">
+                                  <img src="{% static "assets/images/IMG_5628.JPG"%}" alt="Slide 1">
+                                  <div class="review-info">
+                                      <p>
+                                          Даже не представляете, сколько времени я сэкономила благодаря этому сервису! Теперь я принимаю больше заказов и делаю их быстрее
+                                      </p>
+                                      <div class="slider-review__author">
+                                          <div class="author-avatar">
+                                              <img class="author-img" src="{% static "./assets/images/avatar testimonial.png"%}" alt="">
+                                          </div>
+                                          <div class="author-name">Семен</div>
+                                      </div>
+                                  </div>
+                                </div>
+                                <div class="slider-controls">
+                                  <button class="prev-slide">
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+                                          <g opacity="0.5">
+                                          <path d="M6.85 12.8973H19.25C19.4667 12.8973 19.6458 12.8264 19.7875 12.6848C19.9292 12.5431 20 12.3639 20 12.1473C20 11.9306 19.9292 11.7514 19.7875 11.6098C19.6458 11.4681 19.4667 11.3973 19.25 11.3973H6.85L12.525 5.72227C12.675 5.57227 12.75 5.39727 12.75 5.19727C12.75 4.99727 12.675 4.82227 12.525 4.67227C12.375 4.52227 12.2 4.44727 12 4.44727C11.8 4.44727 11.625 4.52227 11.475 4.67227L4.525 11.6223C4.44167 11.7056 4.38333 11.7889 4.35 11.8723C4.31667 11.9556 4.3 12.0473 4.3 12.1473C4.3 12.2473 4.31667 12.3389 4.35 12.4223C4.38333 12.5056 4.44167 12.5889 4.525 12.6723L11.475 19.6223C11.625 19.7723 11.8 19.8473 12 19.8473C12.2 19.8473 12.375 19.7723 12.525 19.6223C12.675 19.4723 12.75 19.2973 12.75 19.0973C12.75 18.8973 12.675 18.7223 12.525 18.5723L6.85 12.8973Z" fill="white"/>
+                                          </g>
+                                      </svg>
+                                  </button>
+                                  <button class="next-slide">
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+                                          <g opacity="0.5">
+                                          <path d="M17.15 12.8973H4.75C4.53333 12.8973 4.35417 12.8264 4.2125 12.6848C4.07083 12.5431 4 12.3639 4 12.1473C4 11.9306 4.07083 11.7514 4.2125 11.6098C4.35417 11.4681 4.53333 11.3973 4.75 11.3973H17.15L11.475 5.72227C11.325 5.57227 11.25 5.39727 11.25 5.19727C11.25 4.99727 11.325 4.82227 11.475 4.67227C11.625 4.52227 11.8 4.44727 12 4.44727C12.2 4.44727 12.375 4.52227 12.525 4.67227L19.475 11.6223C19.5583 11.7056 19.6167 11.7889 19.65 11.8723C19.6833 11.9556 19.7 12.0473 19.7 12.1473C19.7 12.2473 19.6833 12.3389 19.65 12.4223C19.6167 12.5056 19.5583 12.5889 19.475 12.6723L12.525 19.6223C12.375 19.7723 12.2 19.8473 12 19.8473C11.8 19.8473 11.625 19.7723 11.475 19.6223C11.325 19.4723 11.25 19.2973 11.25 19.0973C11.25 18.8973 11.325 18.7223 11.475 18.5723L17.15 12.8973Z" fill="white"/>
+                                          </g>
+                                      </svg>
+                                  </button>
+                                </div>
+                              </div>
+                              <div class="slider-item">
+                                <div class="slider-content">
+                                  <img src="{% static "assets/images/IMG_5629.JPG"%}" alt="Slide 1">
+                                  <div class="review-info">
+                                      <p>
+                                          Даже не представляете, сколько времени я сэкономила благодаря этому сервису! Теперь я принимаю больше заказов и делаю их быстрее
+                                      </p>
+                                      <div class="slider-review__author">
+                                          <div class="author-avatar">
+                                              <img class="author-img" src="{% static "./assets/images/avatar testimonial.png"%}" alt="">
+                                          </div>
+                                          <div class="author-name">Алексей</div>
+                                      </div>
+                                  </div>
+                                </div>
+                                <div class="slider-controls">
+                                  <button class="prev-slide">
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+                                          <g opacity="0.5">
+                                          <path d="M6.85 12.8973H19.25C19.4667 12.8973 19.6458 12.8264 19.7875 12.6848C19.9292 12.5431 20 12.3639 20 12.1473C20 11.9306 19.9292 11.7514 19.7875 11.6098C19.6458 11.4681 19.4667 11.3973 19.25 11.3973H6.85L12.525 5.72227C12.675 5.57227 12.75 5.39727 12.75 5.19727C12.75 4.99727 12.675 4.82227 12.525 4.67227C12.375 4.52227 12.2 4.44727 12 4.44727C11.8 4.44727 11.625 4.52227 11.475 4.67227L4.525 11.6223C4.44167 11.7056 4.38333 11.7889 4.35 11.8723C4.31667 11.9556 4.3 12.0473 4.3 12.1473C4.3 12.2473 4.31667 12.3389 4.35 12.4223C4.38333 12.5056 4.44167 12.5889 4.525 12.6723L11.475 19.6223C11.625 19.7723 11.8 19.8473 12 19.8473C12.2 19.8473 12.375 19.7723 12.525 19.6223C12.675 19.4723 12.75 19.2973 12.75 19.0973C12.75 18.8973 12.675 18.7223 12.525 18.5723L6.85 12.8973Z" fill="white"/>
+                                          </g>
+                                      </svg>
+                                  </button>
+                                  <button class="next-slide">
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+                                          <g opacity="0.5">
+                                          <path d="M17.15 12.8973H4.75C4.53333 12.8973 4.35417 12.8264 4.2125 12.6848C4.07083 12.5431 4 12.3639 4 12.1473C4 11.9306 4.07083 11.7514 4.2125 11.6098C4.35417 11.4681 4.53333 11.3973 4.75 11.3973H17.15L11.475 5.72227C11.325 5.57227 11.25 5.39727 11.25 5.19727C11.25 4.99727 11.325 4.82227 11.475 4.67227C11.625 4.52227 11.8 4.44727 12 4.44727C12.2 4.44727 12.375 4.52227 12.525 4.67227L19.475 11.6223C19.5583 11.7056 19.6167 11.7889 19.65 11.8723C19.6833 11.9556 19.7 12.0473 19.7 12.1473C19.7 12.2473 19.6833 12.3389 19.65 12.4223C19.6167 12.5056 19.5583 12.5889 19.475 12.6723L12.525 19.6223C12.375 19.7723 12.2 19.8473 12 19.8473C11.8 19.8473 11.625 19.7723 11.475 19.6223C11.325 19.4723 11.25 19.2973 11.25 19.0973C11.25 18.8973 11.325 18.7223 11.475 18.5723L17.15 12.8973Z" fill="white"/>
+                                          </g>
+                                      </svg>
+                                  </button>
+                                </div>
+                              </div>
+                            <div class="slider-item">
+                                <div class="slider-content">
+                                  <img src="{% static "assets/images/IMG_5631.JPG"%}" alt="Slide 1">
+                                  <div class="review-info">
+                                      <p>
+                                          Даже не представляете, сколько времени я сэкономила благодаря этому сервису! Теперь я принимаю больше заказов и делаю их быстрее
+                                      </p>
+                                      <div class="slider-review__author">
+                                          <div class="author-avatar">
+                                              <img class="author-img" src="{% static "./assets/images/avatar testimonial.png"%}" alt="">
+                                          </div>
+                                          <div class="author-name">Алексей</div>
+                                      </div>
+                                  </div>
+                                </div>
+                                <div class="slider-controls">
+                                  <button class="prev-slide">
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+                                          <g opacity="0.5">
+                                          <path d="M6.85 12.8973H19.25C19.4667 12.8973 19.6458 12.8264 19.7875 12.6848C19.9292 12.5431 20 12.3639 20 12.1473C20 11.9306 19.9292 11.7514 19.7875 11.6098C19.6458 11.4681 19.4667 11.3973 19.25 11.3973H6.85L12.525 5.72227C12.675 5.57227 12.75 5.39727 12.75 5.19727C12.75 4.99727 12.675 4.82227 12.525 4.67227C12.375 4.52227 12.2 4.44727 12 4.44727C11.8 4.44727 11.625 4.52227 11.475 4.67227L4.525 11.6223C4.44167 11.7056 4.38333 11.7889 4.35 11.8723C4.31667 11.9556 4.3 12.0473 4.3 12.1473C4.3 12.2473 4.31667 12.3389 4.35 12.4223C4.38333 12.5056 4.44167 12.5889 4.525 12.6723L11.475 19.6223C11.625 19.7723 11.8 19.8473 12 19.8473C12.2 19.8473 12.375 19.7723 12.525 19.6223C12.675 19.4723 12.75 19.2973 12.75 19.0973C12.75 18.8973 12.675 18.7223 12.525 18.5723L6.85 12.8973Z" fill="white"/>
+                                          </g>
+                                      </svg>
+                                  </button>
+                                  <button class="next-slide">
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+                                          <g opacity="0.5">
+                                          <path d="M17.15 12.8973H4.75C4.53333 12.8973 4.35417 12.8264 4.2125 12.6848C4.07083 12.5431 4 12.3639 4 12.1473C4 11.9306 4.07083 11.7514 4.2125 11.6098C4.35417 11.4681 4.53333 11.3973 4.75 11.3973H17.15L11.475 5.72227C11.325 5.57227 11.25 5.39727 11.25 5.19727C11.25 4.99727 11.325 4.82227 11.475 4.67227C11.625 4.52227 11.8 4.44727 12 4.44727C12.2 4.44727 12.375 4.52227 12.525 4.67227L19.475 11.6223C19.5583 11.7056 19.6167 11.7889 19.65 11.8723C19.6833 11.9556 19.7 12.0473 19.7 12.1473C19.7 12.2473 19.6833 12.3389 19.65 12.4223C19.6167 12.5056 19.5583 12.5889 19.475 12.6723L12.525 19.6223C12.375 19.7723 12.2 19.8473 12 19.8473C11.8 19.8473 11.625 19.7723 11.475 19.6223C11.325 19.4723 11.25 19.2973 11.25 19.0973C11.25 18.8973 11.325 18.7223 11.475 18.5723L17.15 12.8973Z" fill="white"/>
+                                          </g>
+                                      </svg>
+                                  </button>
+                                </div>
+                              </div>
+                            <div class="slider-item">
+                                <div class="slider-content">
+                                  <img src="{% static "assets/images/IMG_5632.JPG"%}" alt="Slide 1">
+                                  <div class="review-info">
+                                      <p>
+                                          Даже не представляете, сколько времени я сэкономила благодаря этому сервису! Теперь я принимаю больше заказов и делаю их быстрее
+                                      </p>
+                                      <div class="slider-review__author">
+                                          <div class="author-avatar">
+                                              <img class="author-img" src="{% static "./assets/images/avatar testimonial.png"%}" alt="">
+                                          </div>
+                                          <div class="author-name">Алексей</div>
+                                      </div>
+                                  </div>
+                                </div>
+                                <div class="slider-controls">
+                                  <button class="prev-slide">
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+                                          <g opacity="0.5">
+                                          <path d="M6.85 12.8973H19.25C19.4667 12.8973 19.6458 12.8264 19.7875 12.6848C19.9292 12.5431 20 12.3639 20 12.1473C20 11.9306 19.9292 11.7514 19.7875 11.6098C19.6458 11.4681 19.4667 11.3973 19.25 11.3973H6.85L12.525 5.72227C12.675 5.57227 12.75 5.39727 12.75 5.19727C12.75 4.99727 12.675 4.82227 12.525 4.67227C12.375 4.52227 12.2 4.44727 12 4.44727C11.8 4.44727 11.625 4.52227 11.475 4.67227L4.525 11.6223C4.44167 11.7056 4.38333 11.7889 4.35 11.8723C4.31667 11.9556 4.3 12.0473 4.3 12.1473C4.3 12.2473 4.31667 12.3389 4.35 12.4223C4.38333 12.5056 4.44167 12.5889 4.525 12.6723L11.475 19.6223C11.625 19.7723 11.8 19.8473 12 19.8473C12.2 19.8473 12.375 19.7723 12.525 19.6223C12.675 19.4723 12.75 19.2973 12.75 19.0973C12.75 18.8973 12.675 18.7223 12.525 18.5723L6.85 12.8973Z" fill="white"/>
+                                          </g>
+                                      </svg>
+                                  </button>
+                                  <button class="next-slide">
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+                                          <g opacity="0.5">
+                                          <path d="M17.15 12.8973H4.75C4.53333 12.8973 4.35417 12.8264 4.2125 12.6848C4.07083 12.5431 4 12.3639 4 12.1473C4 11.9306 4.07083 11.7514 4.2125 11.6098C4.35417 11.4681 4.53333 11.3973 4.75 11.3973H17.15L11.475 5.72227C11.325 5.57227 11.25 5.39727 11.25 5.19727C11.25 4.99727 11.325 4.82227 11.475 4.67227C11.625 4.52227 11.8 4.44727 12 4.44727C12.2 4.44727 12.375 4.52227 12.525 4.67227L19.475 11.6223C19.5583 11.7056 19.6167 11.7889 19.65 11.8723C19.6833 11.9556 19.7 12.0473 19.7 12.1473C19.7 12.2473 19.6833 12.3389 19.65 12.4223C19.6167 12.5056 19.5583 12.5889 19.475 12.6723L12.525 19.6223C12.375 19.7723 12.2 19.8473 12 19.8473C11.8 19.8473 11.625 19.7723 11.475 19.6223C11.325 19.4723 11.25 19.2973 11.25 19.0973C11.25 18.8973 11.325 18.7223 11.475 18.5723L17.15 12.8973Z" fill="white"/>
+                                          </g>
+                                      </svg>
+                                  </button>
+                                </div>
+                              </div>
+                          </div>
+                    </div>
+                </div>
+            </div>
+            <div class="popup-page" data-page="5">
+                <div class="popup-wrapper">
+                    <div class="popup-page__info height">
+                        <div class="popup-num__page">
+                            <p>5 / 5</p>
+                            <svg class="mobile" onclick="close_popup();" width="20px" height="20px" viewBox="-0.5 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M3 21.32L21 3.32001" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M3 3.32001L21 21.32" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <div class="popup-page__title fourth-page__title">
+                            Куда отправить <br> доступ?
+                        </div>
+                        <p class="first-person">Ты будешь первым, кто узнает о новых локациях</p>
+                        <form class="popup-form">
+                            <input class="popup-input" id="popup_email" type="email" placeholder="Ваша почта">
+                         </form>
+                        <button class="nextButton mobile first-page">
+                            <p>Получить доступ</p>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+                                <path d="M17.15 12.8973H4.75C4.53333 12.8973 4.35417 12.8264 4.2125 12.6848C4.07083 12.5431 4 12.3639 4 12.1473C4 11.9306 4.07083 11.7514 4.2125 11.6098C4.35417 11.4681 4.53333 11.3973 4.75 11.3973H17.15L11.475 5.72227C11.325 5.57227 11.25 5.39727 11.25 5.19727C11.25 4.99727 11.325 4.82227 11.475 4.67227C11.625 4.52227 11.8 4.44727 12 4.44727C12.2 4.44727 12.375 4.52227 12.525 4.67227L19.475 11.6223C19.5583 11.7056 19.6167 11.7889 19.65 11.8723C19.6833 11.9556 19.7 12.0473 19.7 12.1473C19.7 12.2473 19.6833 12.3389 19.65 12.4223C19.6167 12.5056 19.5583 12.5889 19.475 12.6723L12.525 19.6223C12.375 19.7723 12.2 19.8473 12 19.8473C11.8 19.8473 11.625 19.7723 11.475 19.6223C11.325 19.4723 11.25 19.2973 11.25 19.0973C11.25 18.8973 11.325 18.7223 11.475 18.5723L17.15 12.8973Z" fill="#383838"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="popup-page__inter">
+                        <div class="slider-container">
+                            <div class="slider-item">
+                              <div class="slider-content">
+                                <img src="{% static "assets/images/IMG_5627.JPG"%}" alt="Slide 1">
+                                <div class="review-info">
+                                    <p>
+                                        Даже не представляете, сколько времени я сэкономила благодаря этому сервису! Теперь я принимаю больше заказов и делаю их быстрее
+                                    </p>
+                                    <div class="slider-review__author">
+                                        <div class="author-avatar">
+                                            <img class="author-img" src="{% static "./assets/images/avatar testimonial.png"%}" alt="">
+                                        </div>
+                                        <div class="author-name">Екатерина</div>
+                                    </div>
+                                </div>
+                              </div>
+                              <div class="slider-controls">
+                                <button class="prev-slide">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+                                        <g opacity="0.5">
+                                        <path d="M6.85 12.8973H19.25C19.4667 12.8973 19.6458 12.8264 19.7875 12.6848C19.9292 12.5431 20 12.3639 20 12.1473C20 11.9306 19.9292 11.7514 19.7875 11.6098C19.6458 11.4681 19.4667 11.3973 19.25 11.3973H6.85L12.525 5.72227C12.675 5.57227 12.75 5.39727 12.75 5.19727C12.75 4.99727 12.675 4.82227 12.525 4.67227C12.375 4.52227 12.2 4.44727 12 4.44727C11.8 4.44727 11.625 4.52227 11.475 4.67227L4.525 11.6223C4.44167 11.7056 4.38333 11.7889 4.35 11.8723C4.31667 11.9556 4.3 12.0473 4.3 12.1473C4.3 12.2473 4.31667 12.3389 4.35 12.4223C4.38333 12.5056 4.44167 12.5889 4.525 12.6723L11.475 19.6223C11.625 19.7723 11.8 19.8473 12 19.8473C12.2 19.8473 12.375 19.7723 12.525 19.6223C12.675 19.4723 12.75 19.2973 12.75 19.0973C12.75 18.8973 12.675 18.7223 12.525 18.5723L6.85 12.8973Z" fill="white"/>
+                                        </g>
+                                    </svg>
+                                </button>
+                                <button class="next-slide">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+                                        <g opacity="0.5">
+                                        <path d="M17.15 12.8973H4.75C4.53333 12.8973 4.35417 12.8264 4.2125 12.6848C4.07083 12.5431 4 12.3639 4 12.1473C4 11.9306 4.07083 11.7514 4.2125 11.6098C4.35417 11.4681 4.53333 11.3973 4.75 11.3973H17.15L11.475 5.72227C11.325 5.57227 11.25 5.39727 11.25 5.19727C11.25 4.99727 11.325 4.82227 11.475 4.67227C11.625 4.52227 11.8 4.44727 12 4.44727C12.2 4.44727 12.375 4.52227 12.525 4.67227L19.475 11.6223C19.5583 11.7056 19.6167 11.7889 19.65 11.8723C19.6833 11.9556 19.7 12.0473 19.7 12.1473C19.7 12.2473 19.6833 12.3389 19.65 12.4223C19.6167 12.5056 19.5583 12.5889 19.475 12.6723L12.525 19.6223C12.375 19.7723 12.2 19.8473 12 19.8473C11.8 19.8473 11.625 19.7723 11.475 19.6223C11.325 19.4723 11.25 19.2973 11.25 19.0973C11.25 18.8973 11.325 18.7223 11.475 18.5723L17.15 12.8973Z" fill="white"/>
+                                        </g>
+                                    </svg>
+                                </button>
+                              </div>
+                            </div>
+                            <div class="slider-item">
+                                <div class="slider-content">
+                                  <img src="{% static "assets/images/IMG_5628.JPG"%}" alt="Slide 1">
+                                  <div class="review-info">
+                                      <p>
+                                          Даже не представляете, сколько времени я сэкономила благодаря этому сервису! Теперь я принимаю больше заказов и делаю их быстрее
+                                      </p>
+                                      <div class="slider-review__author">
+                                          <div class="author-avatar">
+                                              <img class="author-img" src="{% static "./assets/images/avatar testimonial.png"%}" alt="">
+                                          </div>
+                                          <div class="author-name">Семен</div>
+                                      </div>
+                                  </div>
+                                </div>
+                                <div class="slider-controls">
+                                  <button class="prev-slide">
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+                                          <g opacity="0.5">
+                                          <path d="M6.85 12.8973H19.25C19.4667 12.8973 19.6458 12.8264 19.7875 12.6848C19.9292 12.5431 20 12.3639 20 12.1473C20 11.9306 19.9292 11.7514 19.7875 11.6098C19.6458 11.4681 19.4667 11.3973 19.25 11.3973H6.85L12.525 5.72227C12.675 5.57227 12.75 5.39727 12.75 5.19727C12.75 4.99727 12.675 4.82227 12.525 4.67227C12.375 4.52227 12.2 4.44727 12 4.44727C11.8 4.44727 11.625 4.52227 11.475 4.67227L4.525 11.6223C4.44167 11.7056 4.38333 11.7889 4.35 11.8723C4.31667 11.9556 4.3 12.0473 4.3 12.1473C4.3 12.2473 4.31667 12.3389 4.35 12.4223C4.38333 12.5056 4.44167 12.5889 4.525 12.6723L11.475 19.6223C11.625 19.7723 11.8 19.8473 12 19.8473C12.2 19.8473 12.375 19.7723 12.525 19.6223C12.675 19.4723 12.75 19.2973 12.75 19.0973C12.75 18.8973 12.675 18.7223 12.525 18.5723L6.85 12.8973Z" fill="white"/>
+                                          </g>
+                                      </svg>
+                                  </button>
+                                  <button class="next-slide">
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+                                          <g opacity="0.5">
+                                          <path d="M17.15 12.8973H4.75C4.53333 12.8973 4.35417 12.8264 4.2125 12.6848C4.07083 12.5431 4 12.3639 4 12.1473C4 11.9306 4.07083 11.7514 4.2125 11.6098C4.35417 11.4681 4.53333 11.3973 4.75 11.3973H17.15L11.475 5.72227C11.325 5.57227 11.25 5.39727 11.25 5.19727C11.25 4.99727 11.325 4.82227 11.475 4.67227C11.625 4.52227 11.8 4.44727 12 4.44727C12.2 4.44727 12.375 4.52227 12.525 4.67227L19.475 11.6223C19.5583 11.7056 19.6167 11.7889 19.65 11.8723C19.6833 11.9556 19.7 12.0473 19.7 12.1473C19.7 12.2473 19.6833 12.3389 19.65 12.4223C19.6167 12.5056 19.5583 12.5889 19.475 12.6723L12.525 19.6223C12.375 19.7723 12.2 19.8473 12 19.8473C11.8 19.8473 11.625 19.7723 11.475 19.6223C11.325 19.4723 11.25 19.2973 11.25 19.0973C11.25 18.8973 11.325 18.7223 11.475 18.5723L17.15 12.8973Z" fill="white"/>
+                                          </g>
+                                      </svg>
+                                  </button>
+                                </div>
+                              </div>
+                              <div class="slider-item">
+                                <div class="slider-content">
+                                  <img src="{% static "assets/images/IMG_5629.JPG"%}" alt="Slide 1">
+                                  <div class="review-info">
+                                      <p>
+                                          Даже не представляете, сколько времени я сэкономила благодаря этому сервису! Теперь я принимаю больше заказов и делаю их быстрее
+                                      </p>
+                                      <div class="slider-review__author">
+                                          <div class="author-avatar">
+                                              <img class="author-img" src="{% static "./assets/images/avatar testimonial.png"%}" alt="">
+                                          </div>
+                                          <div class="author-name">Алексей</div>
+                                      </div>
+                                  </div>
+                                </div>
+                                <div class="slider-controls">
+                                  <button class="prev-slide">
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+                                          <g opacity="0.5">
+                                          <path d="M6.85 12.8973H19.25C19.4667 12.8973 19.6458 12.8264 19.7875 12.6848C19.9292 12.5431 20 12.3639 20 12.1473C20 11.9306 19.9292 11.7514 19.7875 11.6098C19.6458 11.4681 19.4667 11.3973 19.25 11.3973H6.85L12.525 5.72227C12.675 5.57227 12.75 5.39727 12.75 5.19727C12.75 4.99727 12.675 4.82227 12.525 4.67227C12.375 4.52227 12.2 4.44727 12 4.44727C11.8 4.44727 11.625 4.52227 11.475 4.67227L4.525 11.6223C4.44167 11.7056 4.38333 11.7889 4.35 11.8723C4.31667 11.9556 4.3 12.0473 4.3 12.1473C4.3 12.2473 4.31667 12.3389 4.35 12.4223C4.38333 12.5056 4.44167 12.5889 4.525 12.6723L11.475 19.6223C11.625 19.7723 11.8 19.8473 12 19.8473C12.2 19.8473 12.375 19.7723 12.525 19.6223C12.675 19.4723 12.75 19.2973 12.75 19.0973C12.75 18.8973 12.675 18.7223 12.525 18.5723L6.85 12.8973Z" fill="white"/>
+                                          </g>
+                                      </svg>
+                                  </button>
+                                  <button class="next-slide">
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+                                          <g opacity="0.5">
+                                          <path d="M17.15 12.8973H4.75C4.53333 12.8973 4.35417 12.8264 4.2125 12.6848C4.07083 12.5431 4 12.3639 4 12.1473C4 11.9306 4.07083 11.7514 4.2125 11.6098C4.35417 11.4681 4.53333 11.3973 4.75 11.3973H17.15L11.475 5.72227C11.325 5.57227 11.25 5.39727 11.25 5.19727C11.25 4.99727 11.325 4.82227 11.475 4.67227C11.625 4.52227 11.8 4.44727 12 4.44727C12.2 4.44727 12.375 4.52227 12.525 4.67227L19.475 11.6223C19.5583 11.7056 19.6167 11.7889 19.65 11.8723C19.6833 11.9556 19.7 12.0473 19.7 12.1473C19.7 12.2473 19.6833 12.3389 19.65 12.4223C19.6167 12.5056 19.5583 12.5889 19.475 12.6723L12.525 19.6223C12.375 19.7723 12.2 19.8473 12 19.8473C11.8 19.8473 11.625 19.7723 11.475 19.6223C11.325 19.4723 11.25 19.2973 11.25 19.0973C11.25 18.8973 11.325 18.7223 11.475 18.5723L17.15 12.8973Z" fill="white"/>
+                                          </g>
+                                      </svg>
+                                  </button>
+                                </div>
+                              </div>
+                            <div class="slider-item">
+                                <div class="slider-content">
+                                  <img src="{% static "assets/images/IMG_5631.JPG"%}" alt="Slide 1">
+                                  <div class="review-info">
+                                      <p>
+                                          Даже не представляете, сколько времени я сэкономила благодаря этому сервису! Теперь я принимаю больше заказов и делаю их быстрее
+                                      </p>
+                                      <div class="slider-review__author">
+                                          <div class="author-avatar">
+                                              <img class="author-img" src="{% static "./assets/images/avatar testimonial.png"%}" alt="">
+                                          </div>
+                                          <div class="author-name">Алексей</div>
+                                      </div>
+                                  </div>
+                                </div>
+                                <div class="slider-controls">
+                                  <button class="prev-slide">
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+                                          <g opacity="0.5">
+                                          <path d="M6.85 12.8973H19.25C19.4667 12.8973 19.6458 12.8264 19.7875 12.6848C19.9292 12.5431 20 12.3639 20 12.1473C20 11.9306 19.9292 11.7514 19.7875 11.6098C19.6458 11.4681 19.4667 11.3973 19.25 11.3973H6.85L12.525 5.72227C12.675 5.57227 12.75 5.39727 12.75 5.19727C12.75 4.99727 12.675 4.82227 12.525 4.67227C12.375 4.52227 12.2 4.44727 12 4.44727C11.8 4.44727 11.625 4.52227 11.475 4.67227L4.525 11.6223C4.44167 11.7056 4.38333 11.7889 4.35 11.8723C4.31667 11.9556 4.3 12.0473 4.3 12.1473C4.3 12.2473 4.31667 12.3389 4.35 12.4223C4.38333 12.5056 4.44167 12.5889 4.525 12.6723L11.475 19.6223C11.625 19.7723 11.8 19.8473 12 19.8473C12.2 19.8473 12.375 19.7723 12.525 19.6223C12.675 19.4723 12.75 19.2973 12.75 19.0973C12.75 18.8973 12.675 18.7223 12.525 18.5723L6.85 12.8973Z" fill="white"/>
+                                          </g>
+                                      </svg>
+                                  </button>
+                                  <button class="next-slide">
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+                                          <g opacity="0.5">
+                                          <path d="M17.15 12.8973H4.75C4.53333 12.8973 4.35417 12.8264 4.2125 12.6848C4.07083 12.5431 4 12.3639 4 12.1473C4 11.9306 4.07083 11.7514 4.2125 11.6098C4.35417 11.4681 4.53333 11.3973 4.75 11.3973H17.15L11.475 5.72227C11.325 5.57227 11.25 5.39727 11.25 5.19727C11.25 4.99727 11.325 4.82227 11.475 4.67227C11.625 4.52227 11.8 4.44727 12 4.44727C12.2 4.44727 12.375 4.52227 12.525 4.67227L19.475 11.6223C19.5583 11.7056 19.6167 11.7889 19.65 11.8723C19.6833 11.9556 19.7 12.0473 19.7 12.1473C19.7 12.2473 19.6833 12.3389 19.65 12.4223C19.6167 12.5056 19.5583 12.5889 19.475 12.6723L12.525 19.6223C12.375 19.7723 12.2 19.8473 12 19.8473C11.8 19.8473 11.625 19.7723 11.475 19.6223C11.325 19.4723 11.25 19.2973 11.25 19.0973C11.25 18.8973 11.325 18.7223 11.475 18.5723L17.15 12.8973Z" fill="white"/>
+                                          </g>
+                                      </svg>
+                                  </button>
+                                </div>
+                              </div>
+                            <div class="slider-item">
+                                <div class="slider-content">
+                                  <img src="{% static "assets/images/IMG_5632.JPG"%}" alt="Slide 1">
+                                  <div class="review-info">
+                                      <p>
+                                          Даже не представляете, сколько времени я сэкономила благодаря этому сервису! Теперь я принимаю больше заказов и делаю их быстрее
+                                      </p>
+                                      <div class="slider-review__author">
+                                          <div class="author-avatar">
+                                              <img class="author-img" src="{% static "./assets/images/avatar testimonial.png"%}" alt="">
+                                          </div>
+                                          <div class="author-name">Алексей</div>
+                                      </div>
+                                  </div>
+                                </div>
+                                <div class="slider-controls">
+                                  <button class="prev-slide">
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+                                          <g opacity="0.5">
+                                          <path d="M6.85 12.8973H19.25C19.4667 12.8973 19.6458 12.8264 19.7875 12.6848C19.9292 12.5431 20 12.3639 20 12.1473C20 11.9306 19.9292 11.7514 19.7875 11.6098C19.6458 11.4681 19.4667 11.3973 19.25 11.3973H6.85L12.525 5.72227C12.675 5.57227 12.75 5.39727 12.75 5.19727C12.75 4.99727 12.675 4.82227 12.525 4.67227C12.375 4.52227 12.2 4.44727 12 4.44727C11.8 4.44727 11.625 4.52227 11.475 4.67227L4.525 11.6223C4.44167 11.7056 4.38333 11.7889 4.35 11.8723C4.31667 11.9556 4.3 12.0473 4.3 12.1473C4.3 12.2473 4.31667 12.3389 4.35 12.4223C4.38333 12.5056 4.44167 12.5889 4.525 12.6723L11.475 19.6223C11.625 19.7723 11.8 19.8473 12 19.8473C12.2 19.8473 12.375 19.7723 12.525 19.6223C12.675 19.4723 12.75 19.2973 12.75 19.0973C12.75 18.8973 12.675 18.7223 12.525 18.5723L6.85 12.8973Z" fill="white"/>
+                                          </g>
+                                      </svg>
+                                  </button>
+                                  <button class="next-slide">
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+                                          <g opacity="0.5">
+                                          <path d="M17.15 12.8973H4.75C4.53333 12.8973 4.35417 12.8264 4.2125 12.6848C4.07083 12.5431 4 12.3639 4 12.1473C4 11.9306 4.07083 11.7514 4.2125 11.6098C4.35417 11.4681 4.53333 11.3973 4.75 11.3973H17.15L11.475 5.72227C11.325 5.57227 11.25 5.39727 11.25 5.19727C11.25 4.99727 11.325 4.82227 11.475 4.67227C11.625 4.52227 11.8 4.44727 12 4.44727C12.2 4.44727 12.375 4.52227 12.525 4.67227L19.475 11.6223C19.5583 11.7056 19.6167 11.7889 19.65 11.8723C19.6833 11.9556 19.7 12.0473 19.7 12.1473C19.7 12.2473 19.6833 12.3389 19.65 12.4223C19.6167 12.5056 19.5583 12.5889 19.475 12.6723L12.525 19.6223C12.375 19.7723 12.2 19.8473 12 19.8473C11.8 19.8473 11.625 19.7723 11.475 19.6223C11.325 19.4723 11.25 19.2973 11.25 19.0973C11.25 18.8973 11.325 18.7223 11.475 18.5723L17.15 12.8973Z" fill="white"/>
+                                          </g>
+                                      </svg>
+                                  </button>
+                                </div>
+                              </div>
+                          </div>
+                    </div>
+                </div>
+            </div>
+            <div class="popup-page" data-page="6">
+                <div class="last-page__popup">
+                    <div class="last-page__popup-wrapper">
+                        <img src="{% static "assets/images/smile.png"%}" alt="">
+                    <div class="last-page__popup--title">Ура! Теперь ты можешь<br>
+                        не волноваться за поиск локаций</div>
+                    <div class="last-page__popup--descr">на почту вам придёт логин и пароль (обязательно проверьте «спам»)</div>
+                    <a class="closeButton" data-bs-toggle="modal" data-bs-target="#loginModal">
+                        <p>К локациям</p>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+                            <path d="M17.15 12.8973H4.75C4.53333 12.8973 4.35417 12.8264 4.2125 12.6848C4.07083 12.5431 4 12.3639 4 12.1473C4 11.9306 4.07083 11.7514 4.2125 11.6098C4.35417 11.4681 4.53333 11.3973 4.75 11.3973H17.15L11.475 5.72227C11.325 5.57227 11.25 5.39727 11.25 5.19727C11.25 4.99727 11.325 4.82227 11.475 4.67227C11.625 4.52227 11.8 4.44727 12 4.44727C12.2 4.44727 12.375 4.52227 12.525 4.67227L19.475 11.6223C19.5583 11.7056 19.6167 11.7889 19.65 11.8723C19.6833 11.9556 19.7 12.0473 19.7 12.1473C19.7 12.2473 19.6833 12.3389 19.65 12.4223C19.6167 12.5056 19.5583 12.5889 19.475 12.6723L12.525 19.6223C12.375 19.7723 12.2 19.8473 12 19.8473C11.8 19.8473 11.625 19.7723 11.475 19.6223C11.325 19.4723 11.25 19.2973 11.25 19.0973C11.25 18.8973 11.325 18.7223 11.475 18.5723L17.15 12.8973Z" fill="#383838"/>
+                        </svg>
+                    </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% block content %}
+    {% endblock %}
+    <footer>
+        <div class="footer container">
+            <div class="footer-logo-geo">
+                <a class="logo-footer" href="">#TAG</a>
+                <button {% if request.user.is_authenticated %}onclick="change_city_location(this)"{% endif %}>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M11.9938 21.5C11.8146 21.5 11.6375 21.4708 11.4625 21.4125C11.2875 21.3542 11.1333 21.2583 11 21.125C10.3 20.4917 9.54167 19.7625 8.725 18.9375C7.90833 18.1125 7.15 17.225 6.45 16.275C5.75 15.325 5.16667 14.3333 4.7 13.3C4.23333 12.2667 4 11.2333 4 10.2C4 7.7 4.80417 5.70833 6.4125 4.225C8.02083 2.74167 9.88333 2 12 2C14.1167 2 15.9792 2.74167 17.5875 4.225C19.1958 5.70833 20 7.7 20 10.2C20 11.2333 19.7667 12.2667 19.3 13.3C18.8333 14.3333 18.25 15.325 17.55 16.275C16.85 17.225 16.0917 18.1125 15.275 18.9375C14.4583 19.7625 13.7 20.4917 13 21.125C12.8667 21.2583 12.7104 21.3542 12.5313 21.4125C12.3521 21.4708 12.1729 21.5 11.9938 21.5ZM12.0022 11.75C12.4841 11.75 12.8958 11.5784 13.2375 11.2353C13.5792 10.8921 13.75 10.4796 13.75 9.99778C13.75 9.51593 13.5784 9.10417 13.2353 8.7625C12.8921 8.42083 12.4796 8.25 11.9978 8.25C11.5159 8.25 11.1042 8.42158 10.7625 8.76472C10.4208 9.10786 10.25 9.52036 10.25 10.0022C10.25 10.4841 10.4216 10.8958 10.7647 11.2375C11.1079 11.5792 11.5204 11.75 12.0022 11.75Z" fill="white"/>
+                    </svg>
+                    <span>{% if request.user.is_authenticated %}{{ request.user.city }}{% else %}Москва{% endif %}</span>
+                </button>
+            </div>
+            <div class="footer-center">
+                <a class="mail_footer">почта для самых важных (и не очень) вопросов: tag.est@gmail.com</a>
+                <a href="">#TAG. 2023. Все права защищены</a>
+                <p></p>
+            </div>
+            <button id="scrollToTopButton">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M11.25 20V6.85L5.05 13.05L4 12L12 4L20 12L18.95 13.05L12.75 6.85V20H11.25Z" fill="white"/>
+                </svg>
+                Наверх
+            </button>
+        </div>
+        <div class="footer container">
+            <div class="footer-center">
+                <p>ИНН: 3664069397</p>
+                <p>ОГРН: 1053600591197</p>
+                <p>Политика конфиденциальности</p>
+            </div>
+        </div>
+    </footer>
+
+
+
+<!-- Модальное окно -->
+  <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-body">
+            <form class="input-two" method="post">
+                {% csrf_token %}
+                <!-- Форма регистрации -->
+                <h3>Регистрация</h3>
+                {{ registration_form }}
+                <button type="submit" class="form-file__btn">Зарегистрироваться</button>
+                <!-- Форма регистрации -->
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Модальное окно -->
+  <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-body">
+            <form class="input-two" id="login-form" method="post">
+                {% csrf_token %}
+                <!-- Форма авторизации -->
+                <h3>Вход</h3>
+                <p><strong>Чтобы получить логин и пароль от #TAG пройдите анкету, нажав на кнопку «начать»</strong></p>
+                <label for="id_login-username">Логин (ваш email):</label>
+                <input type="email" name="login-username" class="form-file__input" maxlength="150" required="" id="id_login-username">
+                <label for="id_login-password">Пароль (придёт на email после прохождения анкеты):</label>
+                <input type="password" name="login-password" autocomplete="current-password" required="" id="id_login-password" class="form-file__input">
+                <button type="button" id="login-form-btn" class="form-file__btn">Начать</button>
+                <!-- Форма авторизации -->
+            </form>
+            <p id="error">Неверный логин или пароль!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="commerceModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+      <div class="modal-content">
+          <div class="modal-header">
+              <svg data-bs-dismiss="modal" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path fill-rule="evenodd" clip-rule="evenodd" d="M19.207 6.207a1 1 0 0 0-1.414-1.414L12 10.586 6.207 4.793a1 1 0 0 0-1.414 1.414L10.586 12l-5.793 5.793a1 1 0 1 0 1.414 1.414L12 13.414l5.793 5.793a1 1 0 0 0 1.414-1.414L13.414 12l5.793-5.793z" fill="#000000"></path></g></svg>
+          </div>
+        <div class="modal-body">
+            <div class="commerce-box">
+                <div class="commerce-form-top">
+                    <h4>Оставьте заявку</h4>
+                    <p>Свяжемся в ближайшее время</p>
+                </div>
+                <form class="commerce-form" method="post">
+                    {% csrf_token %}
+                    <input type="text" placeholder="Ваше имя" name="name" class="form-file__input" maxlength="150" required="" id="id_login-username">
+                    <input type="text" placeholder="Ваш номер" name="phone" class="form-file__input tel" maxlength="150" required="" id="id_login-username">
+                    <select name="city">
+                        <option value="">Город, где нужна локация</option>
+                        <option value="Москва">Москва</option>
+                        <option value="Екатеринбург">Екатеринбург</option>
+                    </select>
+                    <textarea name="desc" placeholder="Комментарий (опционально)"></textarea>
+                    <button type="submit" class="form-file__btn">Отправить</button>
+                </form>
+            </div>
+            <div class="commerce-text">
+                <h4>Найдем локацию на любой вкус</h4>
+                <div class="commerce-subtitle">
+                    <h4>От крыши до завода</h4>
+                    <p>Или любую другую крейзи-локацию под ваш запрос</p>
+                </div>
+                <div class="commerce-step">
+                    <div class="commerce-step-item">
+                        <p>1</p>
+                        <p>Для съемок</p>
+                    </div>
+                    <div class="commerce-step-item">
+                        <p>2</p>
+                        <p>Для фильмов или видео</p>
+                    </div>
+                    <div class="commerce-step-item">
+                        <p>3</p>
+                        <p>Для рекламных кампаний</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <!-- Modal -->
+<div class="modal fade" id="partnerModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+    </div>
+  </div>
+</div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.touchswipe/1.6.19/jquery.touchSwipe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <script src="{% static 'assets/js/main.js' %}"></script>
+    <script>
+
+    function close_popup() {
+        $("#popup").fadeOut();
+    }
+
+        $("#id_login-password").addClass('form-file__input');
+
+// Получаем все чекбоксы с классом "check_tags"
+var checkboxes = document.querySelectorAll('.check_tags');
+
+// Добавляем обработчик события на изменение состояния каждого чекбокса
+checkboxes.forEach(function(checkbox) {
+    checkbox.addEventListener('change', function() {
+        // Получаем метку (label) для данного чекбокса
+        var label = document.querySelector('label[for="' + checkbox.id + '"]');
+
+        // Если чекбокс активен, добавляем класс "active" к метке
+        if (checkbox.checked) {
+            label.classList.add('active');
+        } else {
+            // Если чекбокс не активен, удаляем класс "active" у метки
+            label.classList.remove('active');
+        }
+    });
+});
+
+var checkboxes1 = document.querySelectorAll('.check_rayon');
+
+// Добавляем обработчик события на изменение состояния каждого чекбокса
+checkboxes1.forEach(function(checkbox) {
+    checkbox.addEventListener('change', function() {
+        // Получаем метку (label) для данного чекбокса
+        var label = document.querySelector('label[for="' + checkbox.id + '"]');
+
+        // Если чекбокс активен, добавляем класс "active" к метке
+        if (checkbox.checked) {
+            label.classList.add('active');
+        } else {
+            // Если чекбокс не активен, удаляем класс "active" у метки
+            label.classList.remove('active');
+        }
+    });
+});
+
+function check_rayon(checkbox) {
+    var label = document.querySelector('label[for="' + checkbox.id + '"]');
+
+        // Если чекбокс активен, добавляем класс "active" к метке
+        if (checkbox.checked) {
+            label.classList.add('active');
+        } else {
+            // Если чекбокс не активен, удаляем класс "active" у метки
+            label.classList.remove('active');
+        }
+}
+
+function change_city() {
+    if ($("#select_city").val() == 'Екатеринбург') {
+        $('#rayon_check').empty();
+        $('#rayon_check').append(`
+                                <input type="checkbox" name="rayon_0" id="rayon_0" class="locations-tag check_rayon" onclick="check_rayon(this);">
+                                <label for="rayon_0" class="locations-tag">Любой</label>
+                                <input type="checkbox" name="rayon_1" id="rayon_1" class="locations-tag check_rayon" onclick="check_rayon(this);">
+                                <label for="rayon_1" class="locations-tag">Академический</label>
+                                <input type="checkbox" name="rayon_2" id="rayon_2" class="locations-tag check_rayon" onclick="check_rayon(this);">
+                                <label for="rayon_2" class="locations-tag">Верх-Исетский</label>
+                                <input type="checkbox" name="rayon_3" id="rayon_3" class="locations-tag check_rayon" onclick="check_rayon(this);">
+                                <label for="rayon_3" class="locations-tag">Железнодорожный</label>
+                                <input type="checkbox" name="rayon_4" id="rayon_4" class="locations-tag check_rayon" onclick="check_rayon(this);">
+                                <label for="rayon_4" class="locations-tag">Кировский</label>
+                                <input type="checkbox" name="rayon_5" id="rayon_5" class="locations-tag check_rayon" onclick="check_rayon(this);">
+                                <label for="rayon_5" class="locations-tag">Ленинский</label>
+                                <input type="checkbox" name="rayon_6" id="rayon_6" class="locations-tag check_rayon" onclick="check_rayon(this);">
+                                <label for="rayon_6" class="locations-tag">Октябрьский</label>
+                                <input type="checkbox" name="rayon_7" id="rayon_7" class="locations-tag check_rayon" onclick="check_rayon(this);">
+                                <label for="rayon_7" class="locations-tag">Орджоникидзевский</label>
+                                <input type="checkbox" name="rayon_8" id="rayon_8" class="locations-tag check_rayon" onclick="check_rayon(this);">
+                                <label for="rayon_8" class="locations-tag">Чкаловский</label>`)
+        $('#map_msk').css('display', 'none');
+        $('#map_ekb').css('display', 'block');
+        $('#map_msk_2').css('display', 'none');
+        $('#map_ekb_2').css('display', 'block');
+        $('#text_rayon').empty()
+        $('#text_rayon').append('Выбери удобные <br> районы Екатеринбурга')
+
+        var checkboxes1 = document.querySelectorAll('.check_rayon');
+
+// Добавляем обработчик события на изменение состояния каждого чекбокса
+checkboxes1.forEach(function(checkbox) {
+    checkbox.addEventListener('change', function() {
+        // Получаем метку (label) для данного чекбокса
+        var label = document.querySelector('label[for="' + checkbox.id + '"]');
+
+        // Если чекбокс активен, добавляем класс "active" к метке
+        if (checkbox.checked) {
+            label.classList.add('active');
+        } else {
+            // Если чекбокс не активен, удаляем класс "active" у метки
+            label.classList.remove('active');
+        }
+    });
+});
+
+    } else {
+        $('#map_msk').css('display', 'block');
+        $('#map_ekb').css('display', 'none');
+        $('#map_msk_2').css('display', 'block');
+        $('#map_ekb_2').css('display', 'none');
+        $('#text_rayon').empty()
+        $('#text_rayon').append('Выбери удобные <br> районы Москвы')
+
+        $('#rayon_check').empty();
+        $('#rayon_check').append(`
+                                <input type="checkbox" name="rayon_msk_0" id="rayon_msk_0" class="locations-tag check_rayon" onclick="check_rayon(this);">
+                                <label for="rayon_msk_0" class="locations-tag">Любой</label>
+                                 <input type="checkbox" name="rayon_msk_1" id="rayon_msk_1" class="locations-tag check_tags" onclick="check_rayon(this);">
+                                 <label for="rayon_msk_1" class="locations-tag">Центральный</label>
+                                <input type="checkbox" name="rayon_msk_2" id="rayon_msk_2" class="locations-tag check_tags" onclick="check_rayon(this);">
+                                <label for="rayon_msk_2" class="locations-tag">Северный</label>
+                                <input type="checkbox" name="rayon_msk_3" id="rayon_msk_3" class="locations-tag check_tags" onclick="check_rayon(this);">
+                                <label for="rayon_msk_3" class="locations-tag">Северо-Восточный</label>
+                                <input type="checkbox" name="rayon_msk_4" id="rayon_msk_4" class="locations-tag check_tags" onclick="check_rayon(this);">
+                                <label for="rayon_msk_4" class="locations-tag">Восточный</label>
+                                <input type="checkbox" name="rayon_msk_5" id="rayon_msk_5" class="locations-tag check_tags" onclick="check_rayon(this);">
+                                <label for="rayon_msk_5" class="locations-tag">Юго-Восточный</label>
+                                <input type="checkbox" name="rayon_msk_6" id="rayon_msk_6" class="locations-tag check_tags" onclick="check_rayon(this);">
+                                <label for="rayon_msk_6" class="locations-tag">Южный</label>
+                                <input type="checkbox" name="rayon_msk_7" id="rayon_msk_7" class="locations-tag check_tags" onclick="check_rayon(this);">
+                                <label for="rayon_msk_7" class="locations-tag">Юго-Западный</label>
+                                <input type="checkbox" name="rayon_msk_8" id="rayon_msk_8" class="locations-tag check_tags" onclick="check_rayon(this);">
+                                <label for="rayon_msk_8" class="locations-tag">Западный</label>
+                                <input type="checkbox" name="rayon_msk_9" id="rayon_msk_9" class="locations-tag check_tags" onclick="check_rayon(this);">
+                                <label for="rayon_msk_9" class="locations-tag">Северо-Западный</label>
+                                <input type="checkbox" name="rayon_msk_10" id="rayon_msk_10" class="locations-tag check_tags" onclick="check_rayon(this);">
+                                <label for="rayon_msk_10" class="locations-tag">Зеленоградский</label>
+                                <input type="checkbox" name="rayon_msk_11" id="rayon_msk_11" class="locations-tag check_tags" onclick="check_rayon(this);">
+                                <label for="rayon_msk_11" class="locations-tag">Троицкий</label>
+                                <input type="checkbox" name="rayon_msk_12" id="rayon_msk_12" class="locations-tag check_tags" onclick="check_rayon(this);">
+                                <label for="rayon_msk_12" class="locations-tag">Новомосковский</label>`)
+
+        var checkboxes1 = document.querySelectorAll('.check_rayon');
+
+// Добавляем обработчик события на изменение состояния каждого чекбокса
+checkboxes1.forEach(function(checkbox) {
+    checkbox.addEventListener('change', function() {
+        // Получаем метку (label) для данного чекбокса
+        var label = document.querySelector('label[for="' + checkbox.id + '"]');
+
+        // Если чекбокс активен, добавляем класс "active" к метке
+        if (checkbox.checked) {
+            label.classList.add('active');
+        } else {
+            // Если чекбокс не активен, удаляем класс "active" у метки
+            label.classList.remove('active');
+        }
+    });
+});
+    }
+}
+
+document.addEventListener('touchstart', function(event) {
+    if (event.touches.length > 1) {
+        event.preventDefault();
+    }
+}, { passive: false });
+
+
+
+$("#login-form-btn").click(function() {
+            // Serialize form data
+            var formData = $("#login-form").serialize();
+
+            // Submit the form via Ajax
+            $.ajax({
+                type: "GET",
+                url: "/login",  // Replace 'your_login_view' with the actual URL of your login view
+                data: formData,
+                success: function(response) {
+                    console.log(response.status)
+                    if (response.status == 'success') {
+                        window.location.href = '/accounts';
+                    } else {
+                        $('#error').css('display', 'block')
+                    }
+                },
+                error: function(response) {
+                }
+            });
+        });
+    </script>
+{% block js %}
+{% endblock %}
+</body>
+</html>

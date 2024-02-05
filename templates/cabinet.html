@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+<link href="{% static 'style/registration.css' %}" rel="stylesheet">
+{% endblock %}
+{% block content %}
+        <section class="account">
+            <div class="user-info">
+                <div class="user-info_block">
+                    <h4>Account</h4>
+                    <div class="d-flex invite-code gap-2">
+                        <p>Your Invite Code:</p>
+                        <div class="d-flex">
+                            <p> {{ request.user.username }}</p>
+                            <a id="reverseButton" onclick="copy('{{ request.user.username }}');message();" style="background-image: url('{% static 'img/copy-svgrepo-com.svg' %}');width: 25px;display: block;height: 25px;background-size: 100%;cursor: pointer;"></a>
+                        </div>
+                    </div>
+                    <p>Email: {{ request.user.email }}</p>
+                </div>
+                <div class="user-info_block">
+                    <p>Скопируйте Invite Code для активации демо версии программы Chat FG.</p>
+                    {% if request.user.first_name and request.user.last_name and request.user.userprofile.country and request.user.userprofile.gender %}
+                        <div class="d-flex flex-column">
+                            <p>First name: {{ request.user.first_name }}</p>
+                            <p>Last name: {{ request.user.last_name }}</p>
+                            <p>Birthday: {{ request.user.userprofile.birthday }}</p>
+                            <p>Country: {{ request.user.userprofile.country }}</p>
+                            <p>Gender: {{ request.user.userprofile.gender }}</p>
+                        </div>
+                        <button type="button" id="btn-buy">Buy</button>
+                    {% else %}
+                        <button type="button" id="btn-form">Continue</button>
+                    {% endif %}
+                </div>
+            </div>
+        </section>
+        <section class="section-user-info">
+            <a class="back back-form">
+                <div class="arrow">
+                    <svg viewBox="0 0 512.00 512.00" width="32" version="1.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#ffffff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <style type="text/css"> .st0{fill:#ffffff;} </style> <g id="Layer_1"></g> <g id="Layer_2"> <g> <path class="st0" d="M217,129.88c-6.25-6.25-16.38-6.25-22.63,0L79.61,244.64c-0.39,0.39-0.76,0.8-1.11,1.23 c-0.11,0.13-0.2,0.27-0.31,0.41c-0.21,0.28-0.42,0.55-0.62,0.84c-0.14,0.21-0.26,0.43-0.39,0.64c-0.14,0.23-0.28,0.46-0.41,0.7 c-0.13,0.24-0.24,0.48-0.35,0.73c-0.11,0.23-0.22,0.45-0.32,0.68c-0.11,0.26-0.19,0.52-0.28,0.78c-0.08,0.23-0.17,0.46-0.24,0.69 c-0.09,0.29-0.15,0.58-0.22,0.86c-0.05,0.22-0.11,0.43-0.16,0.65c-0.08,0.38-0.13,0.76-0.17,1.14c-0.02,0.14-0.04,0.27-0.06,0.41 c-0.11,1.07-0.11,2.15,0,3.22c0.01,0.06,0.02,0.12,0.03,0.18c0.05,0.46,0.12,0.92,0.21,1.37c0.03,0.13,0.07,0.26,0.1,0.39 c0.09,0.38,0.18,0.76,0.29,1.13c0.04,0.13,0.09,0.26,0.14,0.4c0.12,0.36,0.25,0.73,0.4,1.09c0.05,0.11,0.1,0.21,0.15,0.32 c0.17,0.37,0.34,0.74,0.53,1.1c0.04,0.07,0.09,0.14,0.13,0.21c0.21,0.38,0.44,0.76,0.68,1.13c0.02,0.03,0.04,0.06,0.06,0.09 c0.55,0.81,1.18,1.58,1.89,2.29l114.81,114.81c3.12,3.12,7.22,4.69,11.31,4.69s8.19-1.56,11.31-4.69c6.25-6.25,6.25-16.38,0-22.63 l-87.5-87.5h291.62c8.84,0,16-7.16,16-16s-7.16-16-16-16H129.51L217,152.5C223.25,146.26,223.25,136.13,217,129.88z"></path> </g> </g> </g></svg>
+                </div>
+            </a>
+            <div class="text">
+                <p>Для активации полной версии программы Chat FG, получения подарков и участия в играх, пожалуйста заполните поля анкеты отмеченные *. Нам станет проще общаться и подбирать важную для вас информацию. Возраст разрешенный для регистрации от 5 лет. Перед заполнением анкеты прочтите нашу <a href="/policy" style="color:#fff;">ПОЛИТИКУ КОНФИДЕНЦИАЛЬНОСТИ</a>.</p>
+            </div>
+            <form method="post" class="user-info_form">
+                {% csrf_token %}
+                <div class="form-elem">
+                    <p>Name*</p>
+                    <input type="text" name="first_name" value="{{ request.user.first_name }}" required>
+                </div>
+                <div class="form-elem">
+                    <p>Surname</p>
+                    <input type="text" name="last_name" value="{{ request.user.last_name }}">
+                </div>
+                <div class="form-elem">
+                    <p>Email*</p>
+                    <input type="text" name="email" value="{{ request.user.email }}" required>
+                </div>
+                <div class="form-elem">
+                    <p>Gender</p>
+                    <div style="display: flex;color: #fff;align-items: center;">
+                        <input type="radio" name="gender" id="male_gender" value="man" {% if request.user.userprofile.gender == 'man' %}checked{% endif %} required>
+                        <label id="male_gender">Male</label>
+                        <input type="radio" name="gender" id="female_gender" value="woman" {% if request.user.userprofile.gender == 'wooman' %}checked{% endif %} required>
+                        <label id="female_gender">Female</label>
+                    </div>
+                </div>
+                <div class="form-elem">
+                    <p>Birthday</p>
+                    <input type="date" name="birthday" id="birthday" value="{{ request.user.userprofile.birthday|date:'Y-m-d' }}" required>
+                </div>
+                <div class="form-elem">
+                    <p>Country*</p>
+                    <input type="text" name="country" value="{{ request.user.userprofile.country }}" required>
+                </div>
+                <div class="form-elem">
+                    <p>City</p>
+                    <input type="text" name="city" value="{{ request.user.userprofile.city }}">
+                </div>
+                <div class="form-elem-row">
+                    <input type="checkbox" name="policy" required>
+                    <p>Я прочитал и согласен с <a href="/policy" style="color:#fff;">политикой конфиденциальности</a>.</p>
+                </div>
+                <button type="submit">Save</button>
+            </form>
+        </section>
+
+{% endblock %}
+{% block js %}
+    <div class="popup-message">
+        <p>Invite code скопирован!</p>
+    </div>
+    <script>
+    $(document).ready(function() {
+  $('input').on('input', function() {
+    // Get the current input value
+      if ($(this).is(':input[type="date"]')) {
+    // Текущий элемент - это <select>
+    // Вы можете выполнять нужные действия здесь
+} else {
+    const inputValue = $(this).val();
+
+    // Use a regular expression to match only English characters (A-Z and a-z)
+    const englishPattern = /^[A-Za-z]+$/;
+
+    if (!englishPattern.test(inputValue)) {
+      // If the input doesn't match the pattern, remove the last character
+      $(this).val(inputValue.slice(0, -1));
+    }
+}
+
+  });
+});
+
+    function message() {
+        $('.popup-message').fadeIn(1000, function() {
+            $(this).fadeOut(2000);
+        });
+    }
+    </script>
+{% endblock %}

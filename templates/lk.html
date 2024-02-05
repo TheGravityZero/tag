@@ -1,0 +1,418 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Главная</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" href='{% static "assets/css/style.css" %}'>
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css'>
+</head>
+<body>
+    <header class="white lk-container">
+        <div class="header container">
+            <button class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="logo-geo">
+                <a class="logo" href="/"><img src="{% static 'assets/images/logo.png' %}"></a>
+                <button onclick="change_city_location(this)">
+                    <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M11.9938 22C11.8146 22 11.6375 21.9708 11.4625 21.9125C11.2875 21.8542 11.1333 21.7583 11 21.625C10.3 20.9917 9.54167 20.2625 8.725 19.4375C7.90833 18.6125 7.15 17.725 6.45 16.775C5.75 15.825 5.16667 14.8333 4.7 13.8C4.23333 12.7667 4 11.7333 4 10.7C4 8.2 4.80417 6.20833 6.4125 4.725C8.02083 3.24167 9.88333 2.5 12 2.5C14.1167 2.5 15.9792 3.24167 17.5875 4.725C19.1958 6.20833 20 8.2 20 10.7C20 11.7333 19.7667 12.7667 19.3 13.8C18.8333 14.8333 18.25 15.825 17.55 16.775C16.85 17.725 16.0917 18.6125 15.275 19.4375C14.4583 20.2625 13.7 20.9917 13 21.625C12.8667 21.7583 12.7104 21.8542 12.5312 21.9125C12.3521 21.9708 12.1729 22 11.9938 22ZM12.0022 12.25C12.4841 12.25 12.8958 12.0784 13.2375 11.7353C13.5792 11.3921 13.75 10.9796 13.75 10.4978C13.75 10.0159 13.5784 9.60417 13.2353 9.2625C12.8921 8.92083 12.4796 8.75 11.9978 8.75C11.5159 8.75 11.1042 8.92158 10.7625 9.26472C10.4208 9.60786 10.25 10.0204 10.25 10.5022C10.25 10.9841 10.4216 11.3958 10.7647 11.7375C11.1079 12.0792 11.5204 12.25 12.0022 12.25Z" fill="#383838"/>
+                    </svg>
+                    <span>{{ request.user.city }}</span>
+                </button>
+            </div>
+            <nav>
+                <li><a class="nav-link" href="/#about" target="_blank">О проекте</a></li>
+                <li><a class="nav-link" href="/#plans" target="_blank">Тарифы</a></li>
+                {% if user.is_authenticated  %}
+                <li><a class="nav-link" href="/location">Локации</a></li>
+                {% endif %}
+                <li><a class="nav-link" href="/#reviews" target="_blank">Отзывы</a></li>
+                <li><a class="nav-link" href="/#contacts" target="_blank">Контакты</a></li>
+            </nav>
+            <div class="lk">
+                    {% if user.is_authenticated  %}
+                <a href="/accounts">
+                    <svg width="32" height="33" viewBox="0 0 32 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7.39935 23.9993C8.79935 23.1105 10.1827 22.4382 11.5493 21.9827C12.916 21.5271 14.3993 21.2994 15.9993 21.2994C17.5993 21.2994 19.0882 21.5271 20.466 21.9827C21.8438 22.4382 23.2327 23.1105 24.6327 23.9993C25.6105 22.7994 26.3049 21.5882 26.716 20.366C27.1271 19.1438 27.3327 17.8549 27.3327 16.4993C27.3327 13.2771 26.2493 10.5827 24.0827 8.41602C21.916 6.24935 19.2216 5.16602 15.9993 5.16602C12.7771 5.16602 10.0827 6.24935 7.91602 8.41602C5.74935 10.5827 4.66602 13.2771 4.66602 16.4993C4.66602 17.8549 4.87713 19.1438 5.29935 20.366C5.72157 21.5882 6.42157 22.7994 7.39935 23.9993ZM15.9931 17.4993C14.7084 17.4993 13.6271 17.0584 12.7493 16.1765C11.8716 15.2946 11.4327 14.2112 11.4327 12.9265C11.4327 11.6417 11.8736 10.5605 12.7555 9.68268C13.6375 8.8049 14.7208 8.36602 16.0055 8.36602C17.2903 8.36602 18.3716 8.80697 19.2493 9.68888C20.1271 10.5708 20.566 11.6541 20.566 12.9389C20.566 14.2236 20.1251 15.3049 19.2432 16.1827C18.3612 17.0605 17.2779 17.4993 15.9931 17.4993ZM15.9858 29.8327C14.1382 29.8327 12.4018 29.4827 10.7767 28.7827C9.15159 28.0827 7.73798 27.1271 6.53585 25.916C5.33374 24.7049 4.38824 23.29 3.69935 21.6713C3.01046 20.0527 2.66602 18.3231 2.66602 16.4827C2.66602 14.6423 3.01602 12.9127 3.71602 11.294C4.41602 9.67536 5.37157 8.26602 6.58268 7.06602C7.79379 5.86602 9.20869 4.91602 10.8274 4.21602C12.446 3.51602 14.1756 3.16602 16.016 3.16602C17.8564 3.16602 19.586 3.51602 21.2046 4.21602C22.8233 4.91602 24.2327 5.86602 25.4327 7.06602C26.6327 8.26602 27.5827 9.67713 28.2827 11.2993C28.9827 12.9216 29.3327 14.6519 29.3327 16.4905C29.3327 18.329 28.9827 20.0568 28.2827 21.6738C27.5827 23.2908 26.6327 24.7049 25.4327 25.916C24.2327 27.1271 22.8201 28.0827 21.195 28.7827C19.57 29.4827 17.8336 29.8327 15.9858 29.8327Z" fill="#383838"/>
+                    </svg>
+                </a>
+                {% else %}
+                <button data-bs-toggle="modal" data-bs-target="#loginModal">
+                    <svg width="32" height="33" viewBox="0 0 32 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7.39935 23.9993C8.79935 23.1105 10.1827 22.4382 11.5493 21.9827C12.916 21.5271 14.3993 21.2994 15.9993 21.2994C17.5993 21.2994 19.0882 21.5271 20.466 21.9827C21.8438 22.4382 23.2327 23.1105 24.6327 23.9993C25.6105 22.7994 26.3049 21.5882 26.716 20.366C27.1271 19.1438 27.3327 17.8549 27.3327 16.4993C27.3327 13.2771 26.2493 10.5827 24.0827 8.41602C21.916 6.24935 19.2216 5.16602 15.9993 5.16602C12.7771 5.16602 10.0827 6.24935 7.91602 8.41602C5.74935 10.5827 4.66602 13.2771 4.66602 16.4993C4.66602 17.8549 4.87713 19.1438 5.29935 20.366C5.72157 21.5882 6.42157 22.7994 7.39935 23.9993ZM15.9931 17.4993C14.7084 17.4993 13.6271 17.0584 12.7493 16.1765C11.8716 15.2946 11.4327 14.2112 11.4327 12.9265C11.4327 11.6417 11.8736 10.5605 12.7555 9.68268C13.6375 8.8049 14.7208 8.36602 16.0055 8.36602C17.2903 8.36602 18.3716 8.80697 19.2493 9.68888C20.1271 10.5708 20.566 11.6541 20.566 12.9389C20.566 14.2236 20.1251 15.3049 19.2432 16.1827C18.3612 17.0605 17.2779 17.4993 15.9931 17.4993ZM15.9858 29.8327C14.1382 29.8327 12.4018 29.4827 10.7767 28.7827C9.15159 28.0827 7.73798 27.1271 6.53585 25.916C5.33374 24.7049 4.38824 23.29 3.69935 21.6713C3.01046 20.0527 2.66602 18.3231 2.66602 16.4827C2.66602 14.6423 3.01602 12.9127 3.71602 11.294C4.41602 9.67536 5.37157 8.26602 6.58268 7.06602C7.79379 5.86602 9.20869 4.91602 10.8274 4.21602C12.446 3.51602 14.1756 3.16602 16.016 3.16602C17.8564 3.16602 19.586 3.51602 21.2046 4.21602C22.8233 4.91602 24.2327 5.86602 25.4327 7.06602C26.6327 8.26602 27.5827 9.67713 28.2827 11.2993C28.9827 12.9216 29.3327 14.6519 29.3327 16.4905C29.3327 18.329 28.9827 20.0568 28.2827 21.6738C27.5827 23.2908 26.6327 24.7049 25.4327 25.916C24.2327 27.1271 22.8201 28.0827 21.195 28.7827C19.57 29.4827 17.8336 29.8327 15.9858 29.8327Z" fill="#383838"/>
+                    </svg>
+                </button>
+                {% endif %}
+                    {% if user.is_authenticated  %}
+                    {% else %}
+                    <button class="header-button" data-bs-toggle="modal" data-bs-target="#registerModal">
+                    Начать <span>бесплатно</span>
+                    </button>
+                    {% endif %}
+                </div>
+            <div class="nav-menu__container">
+                <nav>
+                    <li><a  href="/#about" target="_blank">О проекте</a></li>
+                    <li><a href="/#plans" target="_blank">Тарифы</a></li>
+                    {% if user.is_authenticated  %}
+                <li><a class="nav-link" href="/location">Локации</a></li>
+                {% endif %}
+                    <li><a href="/#reviews" target="_blank">Отзывы</a></li>
+                    <li><a href="/#contacts" target="_blank">Контакты</a></li>
+                </nav>
+                <div class="lk">
+                {% if user.is_authenticated  %}
+                <a href="{% url 'lk' %}">
+                    <svg width="32" height="33" viewBox="0 0 32 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7.39935 23.9993C8.79935 23.1105 10.1827 22.4382 11.5493 21.9827C12.916 21.5271 14.3993 21.2994 15.9993 21.2994C17.5993 21.2994 19.0882 21.5271 20.466 21.9827C21.8438 22.4382 23.2327 23.1105 24.6327 23.9993C25.6105 22.7994 26.3049 21.5882 26.716 20.366C27.1271 19.1438 27.3327 17.8549 27.3327 16.4993C27.3327 13.2771 26.2493 10.5827 24.0827 8.41602C21.916 6.24935 19.2216 5.16602 15.9993 5.16602C12.7771 5.16602 10.0827 6.24935 7.91602 8.41602C5.74935 10.5827 4.66602 13.2771 4.66602 16.4993C4.66602 17.8549 4.87713 19.1438 5.29935 20.366C5.72157 21.5882 6.42157 22.7994 7.39935 23.9993ZM15.9931 17.4993C14.7084 17.4993 13.6271 17.0584 12.7493 16.1765C11.8716 15.2946 11.4327 14.2112 11.4327 12.9265C11.4327 11.6417 11.8736 10.5605 12.7555 9.68268C13.6375 8.8049 14.7208 8.36602 16.0055 8.36602C17.2903 8.36602 18.3716 8.80697 19.2493 9.68888C20.1271 10.5708 20.566 11.6541 20.566 12.9389C20.566 14.2236 20.1251 15.3049 19.2432 16.1827C18.3612 17.0605 17.2779 17.4993 15.9931 17.4993ZM15.9858 29.8327C14.1382 29.8327 12.4018 29.4827 10.7767 28.7827C9.15159 28.0827 7.73798 27.1271 6.53585 25.916C5.33374 24.7049 4.38824 23.29 3.69935 21.6713C3.01046 20.0527 2.66602 18.3231 2.66602 16.4827C2.66602 14.6423 3.01602 12.9127 3.71602 11.294C4.41602 9.67536 5.37157 8.26602 6.58268 7.06602C7.79379 5.86602 9.20869 4.91602 10.8274 4.21602C12.446 3.51602 14.1756 3.16602 16.016 3.16602C17.8564 3.16602 19.586 3.51602 21.2046 4.21602C22.8233 4.91602 24.2327 5.86602 25.4327 7.06602C26.6327 8.26602 27.5827 9.67713 28.2827 11.2993C28.9827 12.9216 29.3327 14.6519 29.3327 16.4905C29.3327 18.329 28.9827 20.0568 28.2827 21.6738C27.5827 23.2908 26.6327 24.7049 25.4327 25.916C24.2327 27.1271 22.8201 28.0827 21.195 28.7827C19.57 29.4827 17.8336 29.8327 15.9858 29.8327Z" fill="#383838"/>
+                    </svg>
+                </a>
+                {% else %}
+                {% endif %}
+                {% if user.is_authenticated %}
+                {% else %}
+                <button class="header-button" id="openpopup">
+                    Начать <span>бесплатно</span>
+                </button>
+                {% endif %}
+            </div>
+            </div>
+        </div>
+    </header>
+    <section class="section-lk">
+        <div class="section-lk-button">
+            <h1>Личный кабинет</h1>
+            <ul>
+                <li><button class="btn-profile active"><img src="{% static 'assets/images/Vector(2).svg' %}">Профиль</button></li>
+                <li><button class="btn-favorite"><img src="{% static 'assets/images/Vector(3).svg' %}">Избранное</button></li>
+                <li><button class="btn-subscribe"><img src="{% static 'assets/images/Vector(4).svg' %}">Подписка</button></li>
+            </ul>
+        </div>
+        <div class="lk-profile  active  container-2">
+            <div class="lk-profile-name">
+                <h3>{{ user.first_name }} {{ user.last_name }}</h3>
+                <p>На сервисе с {{ user.date_joined }}</p>
+            </div>
+            <form method="POST" class="lk-profile-form">
+            {% csrf_token %}
+                <input type="text" placeholder="Имя" value="{{ user.first_name }}" name="first_name">
+                <input type="text" placeholder="Фамилия" value="{{ user.last_name }}" name="last_name">
+                <select name="city">
+                    <option value="Москва" {% if user.city == 'Москва' %}selected{% endif %}>Москва</option>
+                    <option value="Екатеринбург" {% if user.city == 'Екатеринбург' %}selected{% endif %}>Екатеринбург</option>
+                </select>
+                <div class="lk-profile-form__row">
+                    <select name="social">
+                        <option style="display:none;" value="">Соцсеть</option>
+                        <option value="Telegram" {% if user.telegram %}selected{% endif %}>Telegram</option>
+                        <option value="Instagram" {% if user.insta %}selected{% endif %}>Instagram</option>
+                    </select>
+                    <input type="text" placeholder="Имя пользователя" value="{% if user.telegram %}{{ user.telegram }}{% else %}{{ user.insta }}{% endif %}" name="username">
+                </div>
+                <label class="check-inp__label">
+                    <input class="check-inp" type="checkbox" name="согласие" value="согласен" required checked>
+                    <p>Я прочитал и согласен с <a href="/static/assets/policy.docx" target="_blank">политикой конфиденциальности</a>.</p>
+                </label>
+                <button class="edit">Сохранить</button>
+                <a href="/location" class="edit go-location">Локации</a>
+                <a href="{% url 'logout' %}" class="logout">Выйти</a>
+            </form>
+        </div>
+        <div class="lk-favourites">
+            {% for i in wishlist %}
+                    <div class="lk-favourites-item item-loctations" id="loc_{{ i.pk }}">
+                        <div data-slide="slide{{ i.pk }}" class="story location-one">
+                            <div class="story-items">
+                                {% for v in img %}
+                                    {% if i.location.pk == v.note.pk %}
+                                        <div class="story-item">
+                                <img src="{{ v.image.url }}" alt="">
+                                  <div class="story-item__top">
+                                      <img class="story-item__top-img" src="{{ i.location.icon.url }}" alt="">
+                                      <div class="story-item__top-text">
+                                          <h3 class="name-title">{{ i.location.title }}</h3>
+                                          <p class="name-tag">{{ i.location.subtitle }}</p>
+                                      </div>
+                                  </div>
+                                  <div class="story-item__bottom">
+                                      <div class="tag-stroke">
+                                          {% for q in i.hashtag.all %}
+                                              <button class="stroke-item">{{ q.title }}</button>
+                                          {% endfor %}
+                                      </div>
+                                      {% if request.user.is_authenticated %}
+                                      <button class="btn-map" onclick="open_maps({{ i.location.latitude }}, {{ i.location.longitude }})">
+                                          <div class="btn-map__wrap">
+                                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                  <path d="M15.2732 20.8618L8.77708 18.5695L4.35018 20.3194C4.05917 20.4669 3.78225 20.457 3.51943 20.2896C3.2566 20.1223 3.12518 19.8714 3.12518 19.5368V5.78685C3.12518 5.57273 3.18224 5.38298 3.29636 5.21759C3.41046 5.05221 3.56622 4.93427 3.76366 4.86377L8.77708 3.11377L15.2732 5.38107L19.6751 3.6407C19.9495 3.50351 20.2222 3.51537 20.4934 3.67627C20.7646 3.83717 20.9001 4.08172 20.9001 4.40992V18.3137C20.9001 18.5073 20.8341 18.6733 20.7021 18.8118C20.57 18.9502 20.427 19.0496 20.2732 19.1099L15.2732 20.8618ZM14.4502 19.0483V6.57337L9.57516 4.89259V17.3926L14.4502 19.0483ZM15.9098 19.0483L19.4405 17.8945V5.21952L15.9098 6.57337V19.0483ZM4.58478 18.731L8.11556 17.3926V4.89259L4.58478 6.06567V18.731Z" fill="white"/>
+                                              </svg>
+                                              <div class="street-name">{{ i.location.addresses }}</div>
+                                          </div>
+                                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                              <path d="M5.73414 11.8168C5.57859 11.6502 5.50081 11.464 5.50081 11.2585C5.50081 11.0529 5.57859 10.8779 5.73414 10.7335L8.46747 7.98349L5.71747 5.21682C5.56192 5.08349 5.48692 4.90571 5.49247 4.68349C5.49803 4.46127 5.57859 4.27793 5.73414 4.13349C5.87859 3.97793 6.05359 3.90293 6.25914 3.90849C6.4647 3.91405 6.6397 3.98905 6.78414 4.13349L10.1008 7.45016C10.1675 7.51682 10.223 7.59738 10.2675 7.69182C10.3119 7.78627 10.3341 7.88349 10.3341 7.98349C10.3341 8.0946 10.3119 8.1946 10.2675 8.28349C10.223 8.37238 10.1675 8.45016 10.1008 8.51682L6.80081 11.8168C6.65636 11.9613 6.47859 12.0307 6.26747 12.0252C6.05636 12.0196 5.87859 11.9502 5.73414 11.8168Z" fill="white"/>
+                                          </svg>
+                                      </button>
+                                      {% endif %}
+                                      <div class="story-item__bottom-btns">
+                                          <a class="share" href="{% url 'location_detail' i.location.pk %}">
+                                          <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                              <path d="M0.601212 12.7252C0.367879 12.4752 0.251212 12.1961 0.251212 11.8877C0.251212 11.5794 0.367879 11.3169 0.601212 11.1002L4.70121 6.97524L0.576212 2.82524C0.342879 2.62524 0.230379 2.35857 0.238712 2.02524C0.247046 1.6919 0.367879 1.4169 0.601212 1.20024C0.817879 0.966902 1.08038 0.854402 1.38871 0.862736C1.69705 0.871069 1.95955 0.983569 2.17621 1.20024L7.15121 6.17524C7.25121 6.27524 7.33455 6.39607 7.40121 6.53774C7.46788 6.6794 7.50121 6.82524 7.50121 6.97524C7.50121 7.1419 7.46788 7.2919 7.40121 7.42524C7.33455 7.55857 7.25121 7.67524 7.15121 7.77524L2.20121 12.7252C1.98455 12.9419 1.71788 13.0461 1.40121 13.0377C1.08455 13.0294 0.817879 12.9252 0.601212 12.7252Z" fill="black"/>
+                                          </svg>
+                                      </a>
+                                      <button class="like" onclick="wishlist_lk(this, {{ i.location.pk }})" data-wish="delete">
+                                                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                      <g opacity="0.9">
+                                                          <path d="M12 20.3249C11.7667 20.3249 11.5292 20.2832 11.2875 20.1999C11.0458 20.1166 10.8333 19.9832 10.65 19.7999L8.925 18.2249C7.15833 16.6082 5.5625 15.0041 4.1375 13.4124C2.7125 11.8207 2 10.0666 2 8.1499C2 6.58324 2.525 5.2749 3.575 4.2249C4.625 3.1749 5.93333 2.6499 7.5 2.6499C8.38333 2.6499 9.21667 2.8374 10 3.2124C10.7833 3.5874 11.45 4.0999 12 4.7499C12.55 4.0999 13.2167 3.5874 14 3.2124C14.7833 2.8374 15.6167 2.6499 16.5 2.6499C18.0667 2.6499 19.375 3.1749 20.425 4.2249C21.475 5.2749 22 6.58324 22 8.1499C22 10.0666 21.2917 11.8249 19.875 13.4249C18.4583 15.0249 16.85 16.6332 15.05 18.2499L13.35 19.7999C13.1667 19.9832 12.9542 20.1166 12.7125 20.1999C12.4708 20.2832 12.2333 20.3249 12 20.3249Z" fill="#FF5D73"/>
+                                                      </g>
+                                                  </svg>
+                                      </button>
+                                      </div>
+                                  </div>
+                              </div>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                            <nav class="story-nav">
+                              <div class="story-thumb"></div>
+                              <button class="story-prev">Previous</button>
+                              <button class="story-next">Next</button>
+                            </nav>
+                          </div>
+                    </div>
+            {% endfor %}
+        </div>
+        <div class="lk-subscribe container">
+            <div class="lk-subscribe-block white">
+                <div class="lk-subscribe-block-info">
+                    <h3>Бесплатный</h3>
+                    <p>1 #тег на выбор с адресом</p>
+                    <p>Видно все локации, но без <br> адреса</p> 
+                </div>
+            </div>
+            <div class="lk-subscribe-block black">
+                <p class="econom" style="background: var(--yellow);color: #383838;">Экономия 40%</p>
+                <div class="lk-subscribe-block-info">
+                    <h3>На месяц</h3>
+                    <p>Видно адрес всех локаций</p>
+                    <p>Новые локации каждый месяц</p>
+                    <p class="decor">Возможность выбирать локации по цветам</p>
+                    <div class="lk-subscribe-block-price">
+                        <h1>499 ₽</h1>
+                        <span style="color:#fff;">799 ₽</span>
+                    </div>
+                </div>
+                {% if request.user.status == 'mounth' %}
+                    {% if request.user.extension %}
+                        <a href="{% url 'pay_stop' %}">Остановить подписку</a>
+                    {% else %}
+                    {% endif %}
+                {% else %}
+                    <input type="text" id="promocode_mounth" placeholder="Промокод">
+                    <a class="pay_mounth">Получить доступ</a>
+                {% endif %}
+            </div>
+            <div class="lk-subscribe-block yellow">
+                <p class="econom">Экономия 33%</p>
+                <div class="lk-subscribe-block-info">
+                    <h3>На 3 успешных месяца!</h3>
+                <p>Более 150 локаций для проведения съемок</p>
+                <p>Информация по согласованию съемок на локации</p>
+                <p>Быстрый поиск локации по разделам #тегам</p>
+                <p>Новые локации каждый месяц</p>
+                <p class="accent">Еженедельная подборка локаций под инфоповоды<br>Возможность рассказать о себе в рисах наших сообществ (Instagram*, телеграм)</p>
+                <div class="lk-subscribe-block-price">
+                    <h1>999 ₽</h1>
+                    <span>1 497 ₽</span>
+                </div>
+                {% if request.user.status == 'year' %}
+                    {% if request.user.extension %}
+                        <a href="{% url 'pay_stop' %}">Остановить подписку</a>
+                    {% else %}
+                    {% endif %}
+                {% else %}
+                    <input type="text" id="promocode_year" placeholder="Промокод">
+                    <a class="pay_year">Получить доступ</a>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+    <footer class="white">
+        <div class="footer container">
+            <div class="footer-logo-geo">
+                <a class="logo-footer" href="">#TAG</a>
+                <button onclick="change_city_location(this)">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M11.9938 21.5C11.8146 21.5 11.6375 21.4708 11.4625 21.4125C11.2875 21.3542 11.1333 21.2583 11 21.125C10.3 20.4917 9.54167 19.7625 8.725 18.9375C7.90833 18.1125 7.15 17.225 6.45 16.275C5.75 15.325 5.16667 14.3333 4.7 13.3C4.23333 12.2667 4 11.2333 4 10.2C4 7.7 4.80417 5.70833 6.4125 4.225C8.02083 2.74167 9.88333 2 12 2C14.1167 2 15.9792 2.74167 17.5875 4.225C19.1958 5.70833 20 7.7 20 10.2C20 11.2333 19.7667 12.2667 19.3 13.3C18.8333 14.3333 18.25 15.325 17.55 16.275C16.85 17.225 16.0917 18.1125 15.275 18.9375C14.4583 19.7625 13.7 20.4917 13 21.125C12.8667 21.2583 12.7104 21.3542 12.5313 21.4125C12.3521 21.4708 12.1729 21.5 11.9938 21.5ZM12.0022 11.75C12.4841 11.75 12.8958 11.5784 13.2375 11.2353C13.5792 10.8921 13.75 10.4796 13.75 9.99778C13.75 9.51593 13.5784 9.10417 13.2353 8.7625C12.8921 8.42083 12.4796 8.25 11.9978 8.25C11.5159 8.25 11.1042 8.42158 10.7625 8.76472C10.4208 9.10786 10.25 9.52036 10.25 10.0022C10.25 10.4841 10.4216 10.8958 10.7647 11.2375C11.1079 11.5792 11.5204 11.75 12.0022 11.75Z" fill="white"/>
+                    </svg>
+                    <span>{{ request.user.city }}</span>
+                </button>
+            </div>
+            <div class="footer-center">
+                <a href="">Политика конфиденциальности</a>
+                <p>#TAG. 2023. Все права защищены</p>
+            </div>
+            <button id="scrollToTopButton">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M11.25 20V6.85L5.05 13.05L4 12L12 4L20 12L18.95 13.05L12.75 6.85V20H11.25Z" fill="white"/>
+                </svg>  
+                Наверх                
+            </button>
+        </div>
+        
+
+    </footer>
+
+{% if request.user.created_pay < date %}
+<div id="sunbs" class="modal-subs">
+        <div class="modal-content__subs">
+            <div class="close-sub__modal">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M12.0008 13.4008L7.10078 18.3008C6.91745 18.4841 6.68411 18.5758 6.40078 18.5758C6.11745 18.5758 5.88411 18.4841 5.70078 18.3008C5.51745 18.1174 5.42578 17.8841 5.42578 17.6008C5.42578 17.3174 5.51745 17.0841 5.70078 16.9008L10.6008 12.0008L5.70078 7.10078C5.51745 6.91745 5.42578 6.68411 5.42578 6.40078C5.42578 6.11745 5.51745 5.88411 5.70078 5.70078C5.88411 5.51745 6.11745 5.42578 6.40078 5.42578C6.68411 5.42578 6.91745 5.51745 7.10078 5.70078L12.0008 10.6008L16.9008 5.70078C17.0841 5.51745 17.3174 5.42578 17.6008 5.42578C17.8841 5.42578 18.1174 5.51745 18.3008 5.70078C18.4841 5.88411 18.5758 6.11745 18.5758 6.40078C18.5758 6.68411 18.4841 6.91745 18.3008 7.10078L13.4008 12.0008L18.3008 16.9008C18.4841 17.0841 18.5758 17.3174 18.5758 17.6008C18.5758 17.8841 18.4841 18.1174 18.3008 18.3008C18.1174 18.4841 17.8841 18.5758 17.6008 18.5758C17.3174 18.5758 17.0841 18.4841 16.9008 18.3008L12.0008 13.4008Z" fill="black"/>
+                </svg>
+            </div>
+            <div class="modal-rate-top">
+                <div class="modal-title">
+                    <img src="{% static 'assets/images/free-icon-3d-alarm-10473481.png' %}" alt="">
+                    <h1> Ваша подписка закончилась</h1>
+                </div>
+                <p>Вот варианты продолжения подписки</p>
+            </div>
+            <div class="section-rate modal-rate">
+                <div class="swiper swiper-modal">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="block-rate bege">
+                                <h3>Разовый</h3>
+                                <p>Увидеть адрес выбранной локации</p>
+                                <p class="den">Доступ ко всем локациям</p>
+                                <p class="den">Возможность выбора по цветам</p>
+                                <h1 class="hei">149 ₽</h1>
+                                <button>Получить доступ</button>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="block-rate black">
+                                <h3 class="">На месяц</h3>
+                                <p>Видно адрес всех локаций</p>
+                                <p>Новые локации каждый месяц</p>
+                                <h1>499 ₽</h1>
+                                <button class="pay_mounth">Получить доступ</button>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="block-rate yellow">
+                                <h3>На 3 успешных месяца!</h3>
+                <p>Более 150 локаций для проведения съемок</p>
+                <p>Информация по согласованию съемок на локации</p>
+                <p>Быстрый поиск локации по разделам #тегам</p>
+                <p>Новые локации каждый месяц</p>
+                <p class="accent">Еженедельная подборка локаций под инфоповоды<br>Возможность рассказать о себе в рисах наших сообществ (Instagram*, телеграм)</p>
+                <div class="block-rate-row">
+                    <h1>999 ₽</h1>
+                </div>
+                                <button class="pay_year">Получить доступ</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.5/swiper-bundle.min.js'></script>
+    <script>
+    $('.pay_mounth').click(function() {
+        // Получаем значение из инпута 'promocode_mounth'
+        var param1Value = $('#promocode_mounth').val();
+
+        // Формируем URL с GET-параметром
+        var url = "{% url 'pay_mounth' %}?promo=" + param1Value;
+
+        // Перенаправляем пользователя на сформированный URL
+        window.location.href = url;
+    });
+
+    // Обработчик клика для кнопки с id 'pay_year'
+    $('.pay_year').click(function() {
+        // Получаем значение из инпута 'promocode_year'
+        var param1Value = $('#promocode_year').val();
+
+        // Формируем URL с GET-параметром
+        var url = "{% url 'pay_year' %}?promo=" + param1Value;
+
+        // Перенаправляем пользователя на сформированный URL
+        window.location.href = url;
+    });
+</script>
+    <script src="{% static 'assets/js/main.js' %}"></script>
+
+<script>
+    {% for i in wishlist %}
+        const slide_{{ i.pk }} = new SlideStories("slide{{ i.pk }}");
+    {% endfor %}
+
+    var mySwiper2 = new Swiper('.swiper-modal', {
+            slidesPerView: 3,
+            spaceBetween: 20,
+            breakpoints: {
+                768: {
+                    slidesPerView: 2, // Для планшетов
+                    spaceBetween: 20,
+                },
+                300: {
+                    slidesPerView: 'auto', // Автоматически подстраивать количество видимых слайдов
+                    spaceBetween: 30, // Отступ между слайдами
+                    // centeredSlides: true, // Центрировать активный слайд
+                    initialSlide: 0, // Начальный активный слайд
+                    centerInsufficientSlides: true,
+                },
+                1024: {
+                    slidesPerView: 3, // Для ПК
+                    spaceBetween: 30,
+                },
+            }
+        });
+
+        $(document).ready(function(){
+            $(".close-sub__modal").click(function(){
+                $("#sunbs").css("display", "none");
+            });
+        });
+
+        $('#promocode_mounth').on('input', function() {
+        // Check if there's text in the input
+        if ($(this).val().trim() !== '') {
+          // Add box-shadow to the buttons with class .pay_mounth
+          $('.pay_mounth').css('box-shadow', '0 0 20px 4px rgba(173, 216, 230, 0.7)');
+        } else {
+          // Remove box-shadow if input is empty
+          $('.pay_mounth').css('box-shadow', 'none');
+        }
+      });
+
+        $('#promocode_year').on('input', function() {
+        // Check if there's text in the input
+        if ($(this).val().trim() !== '') {
+          // Add box-shadow to the buttons with class .pay_mounth
+          $('.pay_year').css('box-shadow', '0 0 20px 4px rgba(173, 216, 230, 0.7)');
+        } else {
+          // Remove box-shadow if input is empty
+          $('.pay_year').css('box-shadow', 'none');
+        }
+      });
+    </script>
+</body>
+</html>

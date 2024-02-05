@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+<link href="{% static 'style/registration.css' %}" rel="stylesheet">
+{% endblock %}
+{% block content %}
+        <section class="registration">
+            <h4>Enter a code</h4>
+            <form method="post">
+                {% csrf_token %}
+                <input type="hidden" value="{{ code }}">
+                <input type="password" class="form-input" name="code">
+                <button type="submit">Log in</button>
+            </form>
+        </section>
+{% endblock %}
+

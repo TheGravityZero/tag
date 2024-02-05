@@ -1,0 +1,16 @@
+tag.tar.gz
+venv/
+db.sqlite3
+.idea
+media
+__pycache__
+tmp
+config
+img
+media2
+*.zip
+*.png
+*.gif
+*.mp4
+images
+

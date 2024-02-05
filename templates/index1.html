@@ -1,0 +1,364 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <header>
+        <div class="header container">
+            <button class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="logo-geo">
+                <a class="logo" href="">#TAG</a>
+                <button>
+                    <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M11.9938 22C11.8146 22 11.6375 21.9708 11.4625 21.9125C11.2875 21.8542 11.1333 21.7583 11 21.625C10.3 20.9917 9.54167 20.2625 8.725 19.4375C7.90833 18.6125 7.15 17.725 6.45 16.775C5.75 15.825 5.16667 14.8333 4.7 13.8C4.23333 12.7667 4 11.7333 4 10.7C4 8.2 4.80417 6.20833 6.4125 4.725C8.02083 3.24167 9.88333 2.5 12 2.5C14.1167 2.5 15.9792 3.24167 17.5875 4.725C19.1958 6.20833 20 8.2 20 10.7C20 11.7333 19.7667 12.7667 19.3 13.8C18.8333 14.8333 18.25 15.825 17.55 16.775C16.85 17.725 16.0917 18.6125 15.275 19.4375C14.4583 20.2625 13.7 20.9917 13 21.625C12.8667 21.7583 12.7104 21.8542 12.5312 21.9125C12.3521 21.9708 12.1729 22 11.9938 22ZM12.0022 12.25C12.4841 12.25 12.8958 12.0784 13.2375 11.7353C13.5792 11.3921 13.75 10.9796 13.75 10.4978C13.75 10.0159 13.5784 9.60417 13.2353 9.2625C12.8921 8.92083 12.4796 8.75 11.9978 8.75C11.5159 8.75 11.1042 8.92158 10.7625 9.26472C10.4208 9.60786 10.25 10.0204 10.25 10.5022C10.25 10.9841 10.4216 11.3958 10.7647 11.7375C11.1079 12.0792 11.5204 12.25 12.0022 12.25Z" fill="#383838"/>
+                    </svg>
+                    Москва
+                </button>
+            </div>
+            <nav>
+                <li><a class="nav-link" href="#about">О проекте</a></li>
+                <li><a class="nav-link" href="#plans">Тарифы</a></li>
+                <li><a class="nav-link" href="#reviews">Отзывы</a></li>
+                <li><a class="nav-link" href="#contacts">Контакты</a></li>
+            </nav>
+            <div class="lk">
+                {% if user.is_authenticated  %}
+                <a href="{% url 'lk' %}">
+                    <svg width="32" height="33" viewBox="0 0 32 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7.39935 23.9993C8.79935 23.1105 10.1827 22.4382 11.5493 21.9827C12.916 21.5271 14.3993 21.2994 15.9993 21.2994C17.5993 21.2994 19.0882 21.5271 20.466 21.9827C21.8438 22.4382 23.2327 23.1105 24.6327 23.9993C25.6105 22.7994 26.3049 21.5882 26.716 20.366C27.1271 19.1438 27.3327 17.8549 27.3327 16.4993C27.3327 13.2771 26.2493 10.5827 24.0827 8.41602C21.916 6.24935 19.2216 5.16602 15.9993 5.16602C12.7771 5.16602 10.0827 6.24935 7.91602 8.41602C5.74935 10.5827 4.66602 13.2771 4.66602 16.4993C4.66602 17.8549 4.87713 19.1438 5.29935 20.366C5.72157 21.5882 6.42157 22.7994 7.39935 23.9993ZM15.9931 17.4993C14.7084 17.4993 13.6271 17.0584 12.7493 16.1765C11.8716 15.2946 11.4327 14.2112 11.4327 12.9265C11.4327 11.6417 11.8736 10.5605 12.7555 9.68268C13.6375 8.8049 14.7208 8.36602 16.0055 8.36602C17.2903 8.36602 18.3716 8.80697 19.2493 9.68888C20.1271 10.5708 20.566 11.6541 20.566 12.9389C20.566 14.2236 20.1251 15.3049 19.2432 16.1827C18.3612 17.0605 17.2779 17.4993 15.9931 17.4993ZM15.9858 29.8327C14.1382 29.8327 12.4018 29.4827 10.7767 28.7827C9.15159 28.0827 7.73798 27.1271 6.53585 25.916C5.33374 24.7049 4.38824 23.29 3.69935 21.6713C3.01046 20.0527 2.66602 18.3231 2.66602 16.4827C2.66602 14.6423 3.01602 12.9127 3.71602 11.294C4.41602 9.67536 5.37157 8.26602 6.58268 7.06602C7.79379 5.86602 9.20869 4.91602 10.8274 4.21602C12.446 3.51602 14.1756 3.16602 16.016 3.16602C17.8564 3.16602 19.586 3.51602 21.2046 4.21602C22.8233 4.91602 24.2327 5.86602 25.4327 7.06602C26.6327 8.26602 27.5827 9.67713 28.2827 11.2993C28.9827 12.9216 29.3327 14.6519 29.3327 16.4905C29.3327 18.329 28.9827 20.0568 28.2827 21.6738C27.5827 23.2908 26.6327 24.7049 25.4327 25.916C24.2327 27.1271 22.8201 28.0827 21.195 28.7827C19.57 29.4827 17.8336 29.8327 15.9858 29.8327Z" fill="#383838"/>
+                    </svg>
+                </a>
+                {% else %}
+                <button data-bs-toggle="modal" data-bs-target="#loginModal">
+                    <svg width="32" height="33" viewBox="0 0 32 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7.39935 23.9993C8.79935 23.1105 10.1827 22.4382 11.5493 21.9827C12.916 21.5271 14.3993 21.2994 15.9993 21.2994C17.5993 21.2994 19.0882 21.5271 20.466 21.9827C21.8438 22.4382 23.2327 23.1105 24.6327 23.9993C25.6105 22.7994 26.3049 21.5882 26.716 20.366C27.1271 19.1438 27.3327 17.8549 27.3327 16.4993C27.3327 13.2771 26.2493 10.5827 24.0827 8.41602C21.916 6.24935 19.2216 5.16602 15.9993 5.16602C12.7771 5.16602 10.0827 6.24935 7.91602 8.41602C5.74935 10.5827 4.66602 13.2771 4.66602 16.4993C4.66602 17.8549 4.87713 19.1438 5.29935 20.366C5.72157 21.5882 6.42157 22.7994 7.39935 23.9993ZM15.9931 17.4993C14.7084 17.4993 13.6271 17.0584 12.7493 16.1765C11.8716 15.2946 11.4327 14.2112 11.4327 12.9265C11.4327 11.6417 11.8736 10.5605 12.7555 9.68268C13.6375 8.8049 14.7208 8.36602 16.0055 8.36602C17.2903 8.36602 18.3716 8.80697 19.2493 9.68888C20.1271 10.5708 20.566 11.6541 20.566 12.9389C20.566 14.2236 20.1251 15.3049 19.2432 16.1827C18.3612 17.0605 17.2779 17.4993 15.9931 17.4993ZM15.9858 29.8327C14.1382 29.8327 12.4018 29.4827 10.7767 28.7827C9.15159 28.0827 7.73798 27.1271 6.53585 25.916C5.33374 24.7049 4.38824 23.29 3.69935 21.6713C3.01046 20.0527 2.66602 18.3231 2.66602 16.4827C2.66602 14.6423 3.01602 12.9127 3.71602 11.294C4.41602 9.67536 5.37157 8.26602 6.58268 7.06602C7.79379 5.86602 9.20869 4.91602 10.8274 4.21602C12.446 3.51602 14.1756 3.16602 16.016 3.16602C17.8564 3.16602 19.586 3.51602 21.2046 4.21602C22.8233 4.91602 24.2327 5.86602 25.4327 7.06602C26.6327 8.26602 27.5827 9.67713 28.2827 11.2993C28.9827 12.9216 29.3327 14.6519 29.3327 16.4905C29.3327 18.329 28.9827 20.0568 28.2827 21.6738C27.5827 23.2908 26.6327 24.7049 25.4327 25.916C24.2327 27.1271 22.8201 28.0827 21.195 28.7827C19.57 29.4827 17.8336 29.8327 15.9858 29.8327Z" fill="#383838"/>
+                    </svg>
+                </button>
+                {% endif %}
+                {% if user.is_authenticated %}
+                {% else %}
+                <button class="header-button" id="openpopup">
+                    Начать <span>бесплатно</span>
+                </button>
+                {% endif %}
+            </div>
+            <div class="nav-menu__container">
+                <nav>
+                    <li><a href="#about">О проекте</a></li>
+                    <li><a href="#plans">Тарифы</a></li>
+                    <li><a href="#reviews">Отзывы</a></li>
+                    <li><a href="#contacts">Контакты</a></li>
+                </nav>
+                <div class="lk">
+                    {% if user.is_authenticated  %}
+                <a href="{% url 'lk' %}">
+                    <svg width="32" height="33" viewBox="0 0 32 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7.39935 23.9993C8.79935 23.1105 10.1827 22.4382 11.5493 21.9827C12.916 21.5271 14.3993 21.2994 15.9993 21.2994C17.5993 21.2994 19.0882 21.5271 20.466 21.9827C21.8438 22.4382 23.2327 23.1105 24.6327 23.9993C25.6105 22.7994 26.3049 21.5882 26.716 20.366C27.1271 19.1438 27.3327 17.8549 27.3327 16.4993C27.3327 13.2771 26.2493 10.5827 24.0827 8.41602C21.916 6.24935 19.2216 5.16602 15.9993 5.16602C12.7771 5.16602 10.0827 6.24935 7.91602 8.41602C5.74935 10.5827 4.66602 13.2771 4.66602 16.4993C4.66602 17.8549 4.87713 19.1438 5.29935 20.366C5.72157 21.5882 6.42157 22.7994 7.39935 23.9993ZM15.9931 17.4993C14.7084 17.4993 13.6271 17.0584 12.7493 16.1765C11.8716 15.2946 11.4327 14.2112 11.4327 12.9265C11.4327 11.6417 11.8736 10.5605 12.7555 9.68268C13.6375 8.8049 14.7208 8.36602 16.0055 8.36602C17.2903 8.36602 18.3716 8.80697 19.2493 9.68888C20.1271 10.5708 20.566 11.6541 20.566 12.9389C20.566 14.2236 20.1251 15.3049 19.2432 16.1827C18.3612 17.0605 17.2779 17.4993 15.9931 17.4993ZM15.9858 29.8327C14.1382 29.8327 12.4018 29.4827 10.7767 28.7827C9.15159 28.0827 7.73798 27.1271 6.53585 25.916C5.33374 24.7049 4.38824 23.29 3.69935 21.6713C3.01046 20.0527 2.66602 18.3231 2.66602 16.4827C2.66602 14.6423 3.01602 12.9127 3.71602 11.294C4.41602 9.67536 5.37157 8.26602 6.58268 7.06602C7.79379 5.86602 9.20869 4.91602 10.8274 4.21602C12.446 3.51602 14.1756 3.16602 16.016 3.16602C17.8564 3.16602 19.586 3.51602 21.2046 4.21602C22.8233 4.91602 24.2327 5.86602 25.4327 7.06602C26.6327 8.26602 27.5827 9.67713 28.2827 11.2993C28.9827 12.9216 29.3327 14.6519 29.3327 16.4905C29.3327 18.329 28.9827 20.0568 28.2827 21.6738C27.5827 23.2908 26.6327 24.7049 25.4327 25.916C24.2327 27.1271 22.8201 28.0827 21.195 28.7827C19.57 29.4827 17.8336 29.8327 15.9858 29.8327Z" fill="#383838"/>
+                    </svg>
+                </a>
+                {% else %}
+                <button data-bs-toggle="modal" data-bs-target="#loginModal">
+                    <svg width="32" height="33" viewBox="0 0 32 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7.39935 23.9993C8.79935 23.1105 10.1827 22.4382 11.5493 21.9827C12.916 21.5271 14.3993 21.2994 15.9993 21.2994C17.5993 21.2994 19.0882 21.5271 20.466 21.9827C21.8438 22.4382 23.2327 23.1105 24.6327 23.9993C25.6105 22.7994 26.3049 21.5882 26.716 20.366C27.1271 19.1438 27.3327 17.8549 27.3327 16.4993C27.3327 13.2771 26.2493 10.5827 24.0827 8.41602C21.916 6.24935 19.2216 5.16602 15.9993 5.16602C12.7771 5.16602 10.0827 6.24935 7.91602 8.41602C5.74935 10.5827 4.66602 13.2771 4.66602 16.4993C4.66602 17.8549 4.87713 19.1438 5.29935 20.366C5.72157 21.5882 6.42157 22.7994 7.39935 23.9993ZM15.9931 17.4993C14.7084 17.4993 13.6271 17.0584 12.7493 16.1765C11.8716 15.2946 11.4327 14.2112 11.4327 12.9265C11.4327 11.6417 11.8736 10.5605 12.7555 9.68268C13.6375 8.8049 14.7208 8.36602 16.0055 8.36602C17.2903 8.36602 18.3716 8.80697 19.2493 9.68888C20.1271 10.5708 20.566 11.6541 20.566 12.9389C20.566 14.2236 20.1251 15.3049 19.2432 16.1827C18.3612 17.0605 17.2779 17.4993 15.9931 17.4993ZM15.9858 29.8327C14.1382 29.8327 12.4018 29.4827 10.7767 28.7827C9.15159 28.0827 7.73798 27.1271 6.53585 25.916C5.33374 24.7049 4.38824 23.29 3.69935 21.6713C3.01046 20.0527 2.66602 18.3231 2.66602 16.4827C2.66602 14.6423 3.01602 12.9127 3.71602 11.294C4.41602 9.67536 5.37157 8.26602 6.58268 7.06602C7.79379 5.86602 9.20869 4.91602 10.8274 4.21602C12.446 3.51602 14.1756 3.16602 16.016 3.16602C17.8564 3.16602 19.586 3.51602 21.2046 4.21602C22.8233 4.91602 24.2327 5.86602 25.4327 7.06602C26.6327 8.26602 27.5827 9.67713 28.2827 11.2993C28.9827 12.9216 29.3327 14.6519 29.3327 16.4905C29.3327 18.329 28.9827 20.0568 28.2827 21.6738C27.5827 23.2908 26.6327 24.7049 25.4327 25.916C24.2327 27.1271 22.8201 28.0827 21.195 28.7827C19.57 29.4827 17.8336 29.8327 15.9858 29.8327Z" fill="#383838"/>
+                    </svg>
+                </button>
+                {% endif %}
+                    {% if user.is_authenticated  %}
+                    {% else %}
+                    <button class="header-button" data-bs-toggle="modal" data-bs-target="#registerModal">
+                    Начать <span>бесплатно</span>
+                    </button>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </header>
+    <section class="section-secondary">
+        <div class="section-banner container">
+            <div class="section-banner-text">
+                <span class="purple">Не ищи</span>
+                <h1>локации</h1>
+            </div>
+            <div class="section-banner-img">
+                <img src="{% static "assets/images/iPhone 12 Pro.png"%}" alt="">
+            </div>
+            <div class="section-banner-text">
+                <span class="yellow">выбирай</span>
+                <h1>по тегам</h1>
+            </div>
+            <button class="section-banner-btn" id="openpopup">Начать бесплатно</button>
+        </div>
+    </section>
+    <section class="section-location" id="about">
+        <div class="section-location__top">
+            <div class="section-location__top-text">
+                <span>#TAG</span>
+                <p>Новые локации каждый месяц</p>
+            </div>
+            <h1>Сервис который экономит ваше время на поиске локаций</h1>
+        </div>
+        <div class="section-location-main">
+            <div class="locations-item small">
+                <div class="locations-block__wrapper">
+                    <div class="location-pos">#ресторан</div>
+                    <div class="location-pos">#однотонныестены</div>
+                </div>
+            </div>
+            <div class="locations-item average">
+                <div class="locations-block__wrapper">
+                    <div class="location-pos">#крыши</div>
+                    <div class="location-pos">#необычныеместа</div>
+                </div>
+            </div>
+            <div class="locations-item big">
+                <div class="locations-block__wrapper">
+                    <div class="location-pos">#крыши</div>
+                    <div class="location-pos">#необычныеместа</div>
+                </div>
+            </div>
+            <div class="locations-item average">
+                <div class="locations-block__wrapper">
+                    <div class="location-pos">#классическаяархитектура</div>
+                    <div class="location-pos">#розовый</div>
+                </div>
+            </div>
+            <div class="locations-item small">
+                <div class="locations-block__wrapper">
+                    <div class="location-pos">#парковки</div>
+                    <div class="location-pos">#жк</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section-banner-2 container">
+        <div class="section-banner-2__top">
+            <p>#В ЦИФРАХ</p>
+            <h1>Локации Москвы и Екатеринбурга <br> в одном сервисе
+            </h1>
+        </div>
+        <div class="section-banner-2__main">
+            <div class="section-banner-2-block">
+                <div class="section-banner-2-block__main-1">
+                    <img class="section-banner-2-block__main-1-img" src="{% static 'assets/images/IMG_0856.jpg' %}">
+                    <img class="section-banner-2-block__main-1-img" src="{% static 'assets/images/IMG_0904.jpg' %}">
+                    <img class="section-banner-2-block__main-1-img" src="{% static 'assets/images/IMG_0825.JPG' %}">
+                </div>
+                <div class="section-banner-2-block__bottom">
+                    <h1>100+</h1>
+                    <span>локаций</span>
+                </div>
+            </div>
+            <div class="section-banner-2-block">
+                <div class="section-banner-2-block__main-2">
+                    <span>#колонны</span>
+                    <div class="section-banner-2-block__main-2__row">
+                        <span>#рестораны</span>
+                        <span>#парковки</span>
+                    </div>
+                    <span>#однотонные_стены</span>
+                    <div class="section-banner-2-block__main-2__row">
+                        <span>#розовый</span>
+                        <span>#бежевый</span>
+                    </div>
+                    <span>#веранды</span>
+                </div>
+                <div class="section-banner-2-block__bottom">
+                    <h1>15</h1>
+                    <span>#тегов поиска</span>
+                </div>
+            </div>
+            <div class="section-banner-2-block">
+                <div class="section-banner-2-block__main-3">
+                    <img src="{% static "assets/images/banner.png"%}" alt="">
+                </div>
+                <div class="section-banner-2-block__bottom">
+                    <h1>1000+</h1>
+                    <span>криэйтеров, которые не тратят время на поиск локаций</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section-location" id="plans">
+        <div class="section-location__top">
+            <div class="section-location__top-text">
+                <span>#ПРОЦЕСС</span>
+            </div>
+            <h1>Вот так это работает</h1>
+        </div>
+        
+        <div class="section-process-main container">
+            <video class="section-process-video" autoplay="autoplay" loop="loop" >
+                <source src="{% static "assets/images/lines_-_125126 (1080p).mp4"%}">
+            </video>
+            <div class="section-process-text">
+                <div class="section-process-main__block">
+                    <div class="section-process-main__block-top">
+                        <h1>Вход</h1>
+                        <p>Регистрируетесь или входите.</p>
+                    </div>
+                    <p>1</p>
+                </div>
+                <div class="section-process-main__block">
+                    <div class="section-process-main__block-top">
+                        <h1>Тариф</h1>
+                        <p>Выбираете тариф: Бесплатный или безлимитный.</p>
+                    </div>
+                    <p>2</p>
+                </div>
+                <div class="section-process-main__block">
+                    <div class="section-process-main__block-top">
+                        <h1>Локация</h1>
+                        <p>Подбираете локацию на выбор по 15 #тегам.</p>
+                    </div>
+                    <p>3</p>
+                </div>
+                <div class="section-process-main__block">
+                    <div class="section-process-main__block-top">
+                        <h1>Адрес</h1>
+                        <p>Добавляете в избранное. Открываете в картах. Приезжаете на съемки.</p>
+                    </div>
+                    <p>4</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section-banner-2 container">
+        <div class="section-banner-2__top">
+            <p>#ТАРИФ</p>
+            <h1>Для кого этот сервис?</h1>
+        </div>
+        <div class="section-rate">
+            <div class="block-rate-bottom">
+                <div class="block-rate-bottom-left">
+                    <img src="{% static "assets/images/plane-3.png"%}" alt="">
+                    <div class="block-rate-bottom-info">
+                        <h1>Бесплатный</h1>
+                        <div class="block-rate-bottom-info-row">
+                            <p>Для тех, кто хочет узнать как работает сервис TAG.</p>
+                            <p>В доступе 1 #тег для поиска</p>
+                        </div>
+                    </div>
+                </div>
+                <button>Перейти к оформлению</button>
+            </div>
+            <div class="block-rate black">
+                <img src="{% static "assets/images/plane-1.png"%}" alt="">
+                <h3>На месяц</h3>
+                <p class="big-txt">Для тех, у кого есть проекты на создание контена:
+                    smm-специалисты, видеомейкеры, фотографы, рилсмейкеры и другие классные деятели.
+                </p>
+                <p>Видно адрес всех локаций</p>
+                <p>Новые локации каждый месяц</p>
+                <p class="decor">Возможность выбирать локации по цветам</p>
+                <h1>499 ₽</h1>
+                <button>Перейти к оформлению</button>
+            </div>
+            <div class="block-rate yellow">
+                <img src="{% static "assets/images/plane-2.png"%}" alt="">
+                <h3>На год</h3>
+                <p class="big-txt big-txt-year">Для тех, кто постоянно создает контент и продвигает его.</p>
+                <p>Видно адрес всех локаций</p>
+                <p>Новые локации каждый месяц</p>
+                <p class="accent">Возможность выбирать локации по цветам</p>
+                <div class="block-rate-row">
+                    <h1>3 999 ₽</h1>
+                    <span>5 988 ₽</span>
+                </div>
+                <button>Перейти к оформлению</button>     
+            </div>
+        </div>
+    </section>
+    <section class="section-location section-reviews" id="reviews">
+        <div class="section-location__top">
+            <div class="section-location__top-text">
+                <span>#ОТЗЫВЫ</span>
+            </div>
+            <h1>Хорошее место для вашего отзыва</h1>
+        </div>
+        <div class="reviews">
+            {% for i in people %}
+            <div class="reviews-block">
+                <div class="video">
+                    <video autoplay="autoplay" loop="loop" controls>
+                        <source src="{{ i.video.url }}">
+                    </video>
+                </div>
+                <div class="reviews-block-text">
+                    <h1>{{ i.fio }}</h1>
+                    <p>{{ i.description }}</p>
+                </div>
+                <button class="result-btn">Результат</button>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+    <section class="faq">
+        <div class="section-location__top faq-top">
+            <div class="section-location__top-text">
+                <span>#FAQ</span>
+            </div>
+            <h1>Частые вопросы</h1>
+        </div>
+        <div class="faqs container">
+            <div class="accordion accordion-flush" id="accordionFlushExample">
+                {% for i in object_list %}
+
+                    <div class="accordion-item">
+                          <h2 class="accordion-header" id="flush-heading{{ i.pk }}">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse{{ i.pk }}" aria-expanded="false" aria-controls="flush-collapse{{ i.pk }}">
+                                {{ i.question_text }}
+                            </button>
+                          </h2>
+                          <div id="flush-collapse{{ i.pk }}" class="accordion-collapse collapse" aria-labelledby="flush-heading{{ i.pk }}" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">
+                                {{ i.answer_text }}
+                            </div>
+                          </div>
+                    </div>
+
+                {% endfor %}
+            </div>
+    </section>
+    <section class="section-telegram" id="contacts">
+        <div class="container">
+            <div class="telegram">
+                <svg width="96" height="96" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g clip-path="url(#clip0_523_1176)">
+                    <path opacity="0.1" d="M48.02 96.04C74.5407 96.04 96.04 74.5407 96.04 48.02C96.04 21.4993 74.5407 0 48.02 0C21.4993 0 0 21.4993 0 48.02C0 74.5407 21.4993 96.04 48.02 96.04Z" fill="#E3CAFF"/>
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M21.7108 47.4994C35.705 41.422 45.0211 37.3836 49.6991 35.4245C63.0136 29.8668 65.8124 28.9072 67.6117 28.8672C68.0115 28.8672 68.8911 28.9472 69.4909 29.427C69.9707 29.8268 70.0906 30.3466 70.1706 30.7464C70.2506 31.1462 70.3305 31.9859 70.2506 32.6256C69.5309 40.2225 66.4122 58.6548 64.8128 67.1312C64.1331 70.7297 62.8137 71.9292 61.5342 72.0492C58.7354 72.2891 56.6162 70.21 53.9374 68.4507C49.6991 65.6918 47.3401 63.9726 43.2218 61.2537C38.4638 58.135 41.5425 56.4157 44.2614 53.6169C44.9811 52.8972 57.256 41.7018 57.4959 40.7023C57.5359 40.5823 57.5359 40.1025 57.256 39.8626C56.9761 39.6227 56.5763 39.7027 56.2564 39.7826C55.8166 39.8626 49.0994 44.3407 36.0248 53.1771C34.1056 54.4965 32.3863 55.1362 30.827 55.0963C29.1077 55.0563 25.8291 54.1367 23.3501 53.337C20.3514 52.3774 17.9524 51.8576 18.1523 50.1783C18.2722 49.2987 19.4717 48.419 21.7108 47.4994Z" fill="#E3CAFF"/>
+                    </g>
+                    <defs>
+                    <clipPath id="clip0_523_1176">
+                    <rect width="96" height="96" fill="white"/>
+                    </clipPath>
+                    </defs>
+                </svg>    
+                <div class="telegram-main">
+                    <h1>Ворвись новое окружение</h1>
+                    <p>Контентмейкеры, видеографы, фотографы<br>
+                        и блогеры – уже в нашем телеграм канале</p>
+                    <button style="background: #E3CAFF;">Перейти в Телеграм</button>
+                </div>            
+            </div>
+            <form action="" class="form-file">
+                <h3 class="form-file__title">Хочешь добавить свою фотографию на новой локации?</h3>
+                <h3 class="form-file__suptitle">Заполняй форму и мы тебе обязательно ответим</h3>
+                <div class="input-two">
+                    <input type="text" class="form-file__input" placeholder="Ваше имя" required>
+                    <input type="text" class="form-file__input" placeholder="Ваша фамилия" required>
+                </div>
+                <input type="text" class="form-file__input" placeholder="Адрес локации" required>
+                <textarea class="form-file__textarea" placeholder="Описание"></textarea>
+                <div class="form-file__file">
+                    <input type="file" id="fileInput" name="fileInput" required/>
+                    <label for="fileInput">Загрузить файлы</label>
+                    <div id="fileName"></div>
+                </div>
+                <button class="form-file__btn">Отправить</button>
+            </form>
+        </div>
+        <div class="form"></div>
+    </section>
+    {% endblock %}
